@@ -1,0 +1,2 @@
+class LimbusController < CrudController
+end

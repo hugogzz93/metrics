@@ -1,0 +1,76 @@
+@mixin lin-gradient($dir, $from, $to) {
+  background: -webkit-linear-gradient($dir, $from , $to); 
+  background: -o-linear-gradient($dir, $from, $to); 
+  background: -moz-linear-gradient($dir, $from, $to); 
+  background: linear-gradient($dir, $from , $to); 
+}
+
+.dash-row {
+  display: flex;
+}
+
+
+.widget {
+  min-height: 150px;
+  background-color: $dark-blue;
+  color: $white;
+  
+  &:not(:first-child), &:not(:last-child) {
+    border-left: 1px solid lighten($dark-blue, 12%);
+    border-bottom: 1px solid lighten($dark-blue, 12%);
+  }
+    
+
+  
+  &:first-child {
+    @include lin-gradient(right, $dark-blue, #6F3A64); 
+  }
+  
+  &:last-child {
+    @include lin-gradient(right, #933F58, #584163); 
+  }
+  
+  &.light {
+    background-color: $light-blue;
+    color: $dark-blue;
+    border-color: #21AEB9;
+    &:not(:first-child), &:not(:last-child) {
+      border-left: 1px solid #21AEB9;
+      border-bottom: 1px solid #21AEB9;
+    }
+    
+    &:first-child {
+      @include lin-gradient(right, $dark-blue, #6F3A64); 
+    }
+
+    &:last-child {
+      @include lin-gradient(right, #89C6A0, $light-blue); 
+    }
+    // 89C6A0
+  }
+  
+  // flex-grow: 1;
+  
+  &.fl-1 {
+    flex-grow: 1;
+  }
+  &.fl-2 {
+    flex-grow: 2;
+  }
+  &.fl-3 {
+    flex-grow: 3;
+  }
+  &.fl-4 {
+    flex-grow: 4;
+  }
+  &.fl-5 {
+    flex-grow: 5;
+  }
+  &.fl-6 {
+    flex-grow: 6;
+  }
+  &.fl-7 {
+    flex-grow: 7;
+  }
+  
+}

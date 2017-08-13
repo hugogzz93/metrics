@@ -1,0 +1,2 @@
+class Limbus < ApplicationRecord
+end

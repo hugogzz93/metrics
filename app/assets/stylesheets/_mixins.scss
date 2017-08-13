@@ -1,0 +1,7 @@
+@mixin lin-gradient($dir, $from, $to) {
+  background: -webkit-linear-gradient($dir, $from , $to); 
+  background: -o-linear-gradient($dir, $from, $to); 
+  background: -moz-linear-gradient($dir, $from, $to); 
+  background: linear-gradient($dir, $from , $to); 
+}
+
