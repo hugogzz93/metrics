@@ -6,9 +6,19 @@ getHeight = function (elem) {
 	return parseInt(elem.style('height').substr(0, elem.style('height').length - 2))
 }
 
+getPadding = function (elem) {
+	top = parseInt(elem.style('padding-top').substr(0, elem.style('height').length - 2))
+	bottom = parseInt(elem.style('padding-bottom').substr(0, elem.style('height').length - 2))
+	left = parseInt(elem.style('padding-left').substr(0, elem.style('height').length - 2))
+	right = parseInt(elem.style('padding-right').substr(0, elem.style('height').length - 2))
+	max = (x, y) => x > y ? x : y
+
+	return max(max(top, bottom), max(left, right))
+}
+
 
 function lineChart(elem, dataset, color, curve) {
-	padding = 10
+	padding = getPadding(elem)
 	h = getHeight(elem)
 	w = getWidth(elem)
 	svg = elem.append('svg').attr('heigh', h).attr('width', w)
@@ -18,8 +28,8 @@ function lineChart(elem, dataset, color, curve) {
 	yScale = d3.scaleLinear()
 						 .domain([d3.max(dataset), 0])
 						 .range([0+padding, h - padding])
-
-	line = d3.line().x((d, i) => xScale(i)).y(d => yScale(d))
+	curve = curve || d3.curveLinear
+	line = d3.line().x((d, i) => xScale(i)).y(d => yScale(d)).curve(curve)
 	svg.append('path')
 			.attr('d', line(dataset))
 			.attr('fill', 'none')
@@ -35,18 +45,15 @@ function lineChart(elem, dataset, color, curve) {
 
 
 function circleChart(elem, percent, color) {
-	padding = 10;
-	h = getHeight(elem)
-	w = getWidth(elem)
+	padding = 10
+	h = getHeight(elem) - padding
+	w = getWidth(elem) - padding
 	r = h > w ? w/2 : h/2
+
 	color = color || 'orange'
 	svg = elem.append('svg').attr('heigh', h).attr('width', w)
-	xScale = d3.scaleLinear()
-						 .domain([0, dataset.length, 0])
-						 .range([0+padding, w - padding])
-	yScale = d3.scaleLinear()
-						 .domain([d3.max(dataset), 0])
-						 .range([0+padding, h - padding])
+	g = svg.append('g').attr('heigh', h).attr('width', w)
+	
 	x = (x, r, theta) => x + r * Math.sin(theta)						 
 	y = (y, r, theta) => y + r * (1 - Math.cos(theta))
 	c = (st, r, fn) => (theta) => fn(st, r, theta)
@@ -62,13 +69,13 @@ function circleChart(elem, percent, color) {
 
 
 
-	background = svg.append('path')
-									.datum({endAngle: tau})
-									.attr('d', arc)
-									.style("fill", "#ddd")
-									.style('transform', 'translate(' + w/2 + 'px, ' + h/2 + 'px)')
+	// background = g.append('path')
+	// 								.datum({endAngle: tau})
+	// 								.attr('d', arc)
+	// 								.style("fill", "#ddd")
+	// 								.style('transform', 'translate(' + w/2 + 'px, ' + h/2 + 'px)')
 
-	foreground = svg.append('path')
+	foreground = g.append('path')
 									.datum({endAngle: 0})
 									.attr('d', arc)
 									.style('fill', color)
@@ -99,14 +106,13 @@ function circleChart(elem, percent, color) {
 						.attrTween('d', arcTween(percent*tau))
 
 
-	circle = svg.append('circle').datum({percent: 0})
+	circle = g.append('circle').datum({percent: 0})
 		 .attr('cx', x(0, r, 0))
 		 .attr('cy', y(0, r, 0))
 		 .attr('r', '5')
 		 .style('transform', 'translate(' + w/2 + 'px, 0px)')
 		 .attr('fill', color)
 
-	
 	circle.transition()
 		 .duration(2000)
 		 .attrTween('cx', ballTween(percent, xc))
