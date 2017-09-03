@@ -1,3 +1,16 @@
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function genData(n) {
+	array = []
+	while(n--) {
+		array.push(getRandomInt(0, 100))
+	}
+return array
+}
+
 getWidth = function (elem) {
 	return parseInt(elem.style('width').substr(0, elem.style('width').length - 2))
 }
@@ -30,16 +43,40 @@ function lineChart(elem, dataset, color, curve) {
 						 .range([0+padding, h - padding])
 	curve = curve || d3.curveLinear
 	line = d3.line().x((d, i) => xScale(i)).y(d => yScale(d)).curve(curve)
-	svg.append('path')
+	path = svg.append('path')
 			.attr('d', line(dataset))
 			.attr('fill', 'none')
 			.attr('stroke', color)
 
+	totalLength = path.node().getTotalLength()
+	path.attr('stroke-dasharray', totalLength + ' ' + totalLength )
+			.attr('stroke-dashoffset', totalLength)
+			.transition()
+				.duration(2000)
+				.attr('stroke-dashoffset', 0)
+
+
 	svg.append('circle')
-			.attr('cx', xScale(dataset.length-1))
-			.attr('cy', yScale(dataset[dataset.length-1]))
+			.attr('cx', xScale(0))
+			.attr('cy', yScale(dataset[0]))
 			.attr('r', '3')
 			.attr('fill', color)
+			.transition()
+				.duration(2000)
+				.attrTween("transform", translateAlong(path.node()))
+				.attr('cy', () => null)
+
+				  function translateAlong(path) {
+				    var l = path.getTotalLength();
+				    return function(i) {
+				      return function(t) {
+				        var p = path.getPointAtLength(t * l);
+				        return "translate(" + p.x + 40 + "," + p.y + 40 +")";//Move marker
+				      }
+				    }
+				  }
+
+
 }
 
 
@@ -61,7 +98,7 @@ function circleChart(elem, percent, color) {
 	yc = c(0, r, y)
 
 	arc = d3.arc()
-					.innerRadius(r-1)
+					.innerRadius(r-1.5)
 					.outerRadius(r)
 					.startAngle(0)
 
@@ -101,6 +138,14 @@ function circleChart(elem, percent, color) {
 		}
 	}
 
+	textVal =  '0%'
+	text = g.append('text')
+					.attr('x', w/2)
+					.attr('y', h/2)
+					.text(textVal)
+					.attr('text-anchor', 'middle')
+					.attr('dy', '0.25em')
+
 	foreground.transition()
 						.duration(2000)
 						.attrTween('d', arcTween(percent*tau))
@@ -109,7 +154,7 @@ function circleChart(elem, percent, color) {
 	circle = g.append('circle').datum({percent: 0})
 		 .attr('cx', x(0, r, 0))
 		 .attr('cy', y(0, r, 0))
-		 .attr('r', '5')
+		 .attr('r', '4')
 		 .style('transform', 'translate(' + w/2 + 'px, 0px)')
 		 .attr('fill', color)
 
@@ -117,6 +162,12 @@ function circleChart(elem, percent, color) {
 		 .duration(2000)
 		 .attrTween('cx', ballTween(percent, xc))
 		 .attrTween('cy', ballTween(percent, yc))
+
+	text.transition()
+			.duration(2000)
+			.text(d3.interpolate(text.text, percent + '%'))
+
+
 
 
 }
@@ -130,3 +181,4 @@ $(document).on('limbus#index:loaded', function () {
 	// lineChart(svg, dataset, 'red', d3.curveBasis)
 	
 })
+
