@@ -1,8 +1,26 @@
+$light-red: #F55D8D;
+$dark-red: #56365F;
+$dark-blue: #2A3760;
+$light-blue: #33C2C0;
+$border: #AFB3B4;
+$white: #EBEBEC;
+
 @mixin lin-gradient($dir, $from, $to) {
   background: -webkit-linear-gradient($dir, $from , $to); 
   background: -o-linear-gradient($dir, $from, $to); 
   background: -moz-linear-gradient($dir, $from, $to); 
   background: linear-gradient($dir, $from , $to); 
+}
+
+// @mixin lin-gradient($dir,$from, $middle, $to) {
+//   background: -webkit-linear-gradient($dir, $from, $middle, $to); 
+//   background: -o-linear-gradient($dir, $from, $middle, $to); 
+//   background: -moz-linear-gradient($dir, $from, $middle, $to); 
+//   background: linear-gradient($dir, $from, $middle, $to); 
+// }
+
+.container {
+  background-image: url('https://images.unsplash.com/photo-1449179391249-52328aae1c16?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=')
 }
 
 .dash-row {
@@ -21,14 +39,15 @@
     border-bottom: 1px solid lighten($dark-blue, 12%);
   }
     
-
-  
   &:first-child {
     @include lin-gradient(right, $dark-blue, #6F3A64); 
   }
   
   &:last-child {
-    @include lin-gradient(right, #933F58, #584163); 
+    background: -webkit-linear-gradient(right, #933F58, #584163);
+    background: -o-linear-gradient(right, #933F58, #584163);
+    background: -moz-linear-gradient(right, #933F58, #584163);
+    background: linear-gradient(right, #933F58, #584163);
   }
   
   &.light {
@@ -41,13 +60,16 @@
     }
     
     &:first-child {
-      @include lin-gradient(right, $light-blue, #89C6A0); 
+      @include lin-gradient(left, #89C6A0, $light-blue); 
     }
 
     &:last-child {
-      // @include lin-gradient(right, #89C6A0, $light-blue); 
-          background: -webkit-gradient(linear, right top, left top, from(#89C6A0), to(#33C2C0));
+      background: -webkit-linear-gradient(right, #89C6A0, #33C2C0);
+      background: -o-linear-gradient(right, #89C6A0, #33C2C0);
+      background: -moz-linear-gradient(right, #89C6A0, #33C2C0);
+      background: linear-gradient(right, #89C6A0, #33C2C0);
     }
+    // 89C6A0
   }
   
   // flex-grow: 1;
