@@ -16,3 +16,7 @@
 @import 'mixins';
 @import "variables.scss";
 @import "dashboard";
+
+body {
+	font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
