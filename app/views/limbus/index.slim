@@ -2,18 +2,18 @@
   .dashboard
     .dash-row.row
       .widget.dark.col-4
-        1
-        .chart-container
+        = render partial: 'layouts/content_number', locals: {image: 'fa fa-thermometer-empty',
+                                                      main: '48',
+                                                      suffix: 'bpm',
+                                                      subtext:'Temperature'}
       .widget.light.col-2
-        2
-        .chart-container
+        = render partial: 'layouts/content_picture', locals: {image: 'fa fa-xing', subtext: 'Photosynthesis'}
       .widget.light.col-2
-        3
-        .chart-container
+        = render partial: 'layouts/content_picture', locals: {image: 'fa fa-bolt', subtext: 'Glycolisis'}
       .widget.light.col-2
-        .chart-container
+        = render partial: 'layouts/content_picture', locals: {image: 'fa fa-stethoscope', subtext: 'Respiration'}
       .widget.dark.col-2
-        .chart-container
+        = render partial: 'layouts/content_picture', locals: {image: 'fa fa-dribbble', subtext: 'Chemosynth'}
     .dash-row.row
       .widget.col-3
       .widget.col-3

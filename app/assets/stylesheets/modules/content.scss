@@ -1,0 +1,33 @@
+.content {
+  font-weight: 200;
+  .content-suffix, .content-sub-text {
+    opacity: 0.5;
+  } 
+  
+  .content-sub-text {
+    clear: both;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .content-main-text {
+    margin: 0 auto;
+    width: 90%;
+    text-align: center;
+
+    .content-prefix {
+      font-size: 2rem;
+      position: relative;
+      bottom: 1.3rem;
+      right: 1.5rem;
+    }
+    .content-accent {
+      font-size: 3.6rem;
+    }
+    
+    .content-suffix {
+      font-size: 2.312rem;
+    }
+  }
+}

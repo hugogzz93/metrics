@@ -48,11 +48,57 @@ $white: #EBEBEC;
   }
   
 }  
-
-.chart-container {
+.content {
+  height: 100%;
   width: 100%;
-  height: 80%;
-  border: 1px solid black;
-  display: block;
-}
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 200;
   
+  .content-suffix, .content-sub-text {
+    opacity: 0.5;
+  } 
+  .content-main-text {
+    & > .fa {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .content-prefix {
+      font-size: 2rem;
+    }
+    .content-accent {
+      font-size: 3.6rem;
+      margin: 5px;
+    }
+    
+    .content-suffix {
+      font-size: 2.312rem;
+    }
+  }
+}
+
+
+
+.widget {
+  &.dark {
+    .content {
+      .content-main-text {
+        & > .fa {
+          color: $light-red;
+        }
+      }
+    }
+  }
+  &.light {
+    .content {
+      color: $dark-blue;
+
+      .content-sub-text {
+        font-weight: 100;
+      }
+    }
+  }
+}
