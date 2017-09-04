@@ -16,7 +16,9 @@
         = render partial: 'layouts/content_picture', locals: {image: 'fa fa-dribbble', subtext: 'Chemosynth'}
     .dash-row.row
       .widget.col-3
+        = render partial: 'layouts/content_graph', locals: {image: 'fa fa-thermometer-empty', main: '48', suffix: 'o', subtext:'Temperature'}
       .widget.col-3
+        = render partial: 'layouts/content_graph', locals: {image: 'fa fa-heartbeat', main: '98', suffix: 'bpm', subtext:'Heart Rate'}
       .widget.col-3.light
       .widget.col-3.light
     

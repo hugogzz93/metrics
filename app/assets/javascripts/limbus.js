@@ -12,11 +12,14 @@ return array
 }
 
 getWidth = function (elem) {
-	return parseInt(elem.style('width').substr(0, elem.style('width').length - 2))
+	rect = elem.node().getBoundingClientRect()
+	return rect.right - rect.left
+	
 }
 
 getHeight = function (elem) {
-	return parseInt(elem.style('height').substr(0, elem.style('height').length - 2))
+	rect = elem.node().getBoundingClientRect()
+	return rect.bottom - rect.top
 }
 
 getPadding = function (elem) {
@@ -35,6 +38,7 @@ function lineChart(elem, dataset, color, curve) {
 	h = getHeight(elem)
 	w = getWidth(elem)
 	svg = elem.append('svg').attr('heigh', h).attr('width', w)
+	g = svg.append('g')
 	xScale = d3.scaleLinear()
 						 .domain([0, dataset.length, 0])
 						 .range([0+padding, w - padding])
@@ -43,10 +47,11 @@ function lineChart(elem, dataset, color, curve) {
 						 .range([0+padding, h - padding])
 	curve = curve || d3.curveLinear
 	line = d3.line().x((d, i) => xScale(i)).y(d => yScale(d)).curve(curve)
-	path = svg.append('path')
+	path = g.append('path')
 			.attr('d', line(dataset))
 			.attr('fill', 'none')
 			.attr('stroke', color)
+
 
 	totalLength = path.node().getTotalLength()
 	path.attr('stroke-dasharray', totalLength + ' ' + totalLength )
@@ -56,7 +61,7 @@ function lineChart(elem, dataset, color, curve) {
 				.attr('stroke-dashoffset', 0)
 
 
-	svg.append('circle')
+	g.append('circle')
 			.attr('cx', xScale(0))
 			.attr('cy', yScale(dataset[0]))
 			.attr('r', '3')
@@ -71,12 +76,12 @@ function lineChart(elem, dataset, color, curve) {
 				    return function(i) {
 				      return function(t) {
 				        var p = path.getPointAtLength(t * l);
-				        return "translate(" + p.x + 40 + "," + p.y + 40 +")";//Move marker
+				        return "translate(" + p.x + "," + p.y +")";//Move marker
 				      }
 				    }
 				  }
 
-
+	g.style('transform', 'translate(10%, 0px)')
 }
 
 
@@ -178,7 +183,8 @@ $(document).on('limbus#index:loaded', function () {
 	svg = d3.select('body').append('svg').attr('height', h).attr('width', w)
 	elem = svg
 	dataset = [6, 5, 3, 4, 2, 1]
-	// lineChart(svg, dataset, 'red', d3.curveBasis)
+	lineChart(d3.select('.dash-row:nth-child(2) .widget:nth-child(2) .content-sub-graph'), [4, 2, 4, 1], 'orange')
+	// circleChart(d3.select('.dash-row:nth-child(2) .widget:nth-child(1) .content-sub-text'), 1, 'blue')
 	
 })
 
