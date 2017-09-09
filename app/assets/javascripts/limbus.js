@@ -37,7 +37,7 @@ function lineChart(elem, dataset, color, curve) {
 	padding = getPadding(elem)
 	h = getHeight(elem)
 	w = getWidth(elem)
-	svg = elem.append('svg').attr('heigh', h).attr('width', w)
+	svg = elem.append('svg').attr('height', h).attr('width', w)
 	g = svg.append('g')
 	xScale = d3.scaleLinear()
 						 .domain([0, dataset.length, 0])
@@ -94,7 +94,7 @@ function circleChart(elem, percent, color) {
 
 	color = color || 'orange'
 	svg = elem.append('svg').attr('heigh', h).attr('width', w)
-	g = svg.append('g').attr('heigh', h).attr('width', w)
+	g = svg.append('g').attr('height', h).attr('width', w)
 	
 	x = (x, r, theta) => x + r * Math.sin(theta)						 
 	y = (y, r, theta) => y + r * (1 - Math.cos(theta))
@@ -183,7 +183,8 @@ $(document).on('limbus#index:loaded', function () {
 	svg = d3.select('body').append('svg').attr('height', h).attr('width', w)
 	elem = svg
 	dataset = [6, 5, 3, 4, 2, 1]
-	lineChart(d3.select('.dash-row:nth-child(2) .widget:nth-child(2) .content-sub-graph'), [4, 2, 4, 1], 'orange')
+	lineChart(d3.select('.dash-row:nth-child(2) .widget:nth-child(2) .content-sub-graph'), [4, 2, 4, 1], '#3DB3C0', d3.curveCatmullRom)
+	lineChart(d3.select('.dash-row:nth-child(2) .widget:nth-child(1) .content-sub-graph'), [6,5,3, 4, 2, 1], '#3DB3C0')
 	// circleChart(d3.select('.dash-row:nth-child(2) .widget:nth-child(1) .content-sub-text'), 1, 'blue')
 	
 })

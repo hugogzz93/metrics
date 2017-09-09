@@ -49,6 +49,7 @@ $white: #EBEBEC;
   
 }  
 .content {
+  padding-top: 1em;
   height: 100%;
   width: 100%;
   display: flex;
@@ -60,6 +61,11 @@ $white: #EBEBEC;
   .content-suffix, .content-sub-text {
     opacity: 0.5;
   } 
+
+  .content-sub-text {
+    font-weight: 300;
+    font-size: 12px;
+  }
   .content-main-text {
     & > .fa {
       font-size: 2.8rem;
@@ -67,21 +73,39 @@ $white: #EBEBEC;
     }
 
     .content-prefix {
-      font-size: 2rem;
+      font-size: 1rem;
+      position: relative;
+      bottom: 1rem;
+      right: 0.5rem;
     }
     .content-accent {
-      font-size: 3.6rem;
+      font-size: 2.6rem;
       margin: 5px;
     }
     
     .content-suffix {
-      font-size: 2.312rem;
+      font-size: 1.6rem;
     }
 
   }
   .content-sub-graph {
     width: 100%;
-    min-height: 3em;
+    min-height: 3rem;
+    // padding: 1rem 0;
+
+  }
+
+  .content-sub-icon {
+      width: 100%;
+      min-height: 3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+  }
+
+  .content-sub-icon, .content-sub-graph {
+    margin: 1rem 0;
   }
 }
 
@@ -100,10 +124,6 @@ $white: #EBEBEC;
   &.light {
     .content {
       color: $dark-blue;
-
-      .content-sub-text {
-        font-weight: 100;
-      }
     }
   }
 }

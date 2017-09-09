@@ -5,22 +5,33 @@
         = render partial: 'layouts/content_number', locals: {image: 'fa fa-thermometer-empty',
                                                       main: '48',
                                                       suffix: 'bpm',
-                                                      subtext:'Temperature'}
+                                                      subtext:'TEMPERATURE'}
       .widget.light.col-2
-        = render partial: 'layouts/content_picture', locals: {image: 'fa fa-xing', subtext: 'Photosynthesis'}
+        = render partial: 'layouts/content_picture', locals: {image: 'fa fa-xing', subtext: 'PHOTOSYNTHESIS'}
       .widget.light.col-2
-        = render partial: 'layouts/content_picture', locals: {image: 'fa fa-bolt', subtext: 'Glycolisis'}
+        = render partial: 'layouts/content_picture', locals: {image: 'fa fa-bolt', subtext: 'GLYCOLISIS'}
       .widget.light.col-2
-        = render partial: 'layouts/content_picture', locals: {image: 'fa fa-stethoscope', subtext: 'Respiration'}
+        = render partial: 'layouts/content_picture', locals: {image: 'fa fa-stethoscope', subtext: 'RESPIRATION'}
       .widget.dark.col-2
-        = render partial: 'layouts/content_picture', locals: {image: 'fa fa-dribbble', subtext: 'Chemosynth'}
+        = render partial: 'layouts/content_picture', locals: {image: 'fa fa-dribbble', subtext: 'CHEMOSYNTH'}
     .dash-row.row
       .widget.col-3
-        = render partial: 'layouts/content_graph', locals: {image: 'fa fa-thermometer-empty', main: '48', suffix: 'o', subtext:'Temperature'}
+        = render partial: 'layouts/content_graph', locals: {image: 'fa fa-thermometer-empty', main: '48', suffix: 'o', subtext:'TEMPERATURE'}
       .widget.col-3
-        = render partial: 'layouts/content_graph', locals: {image: 'fa fa-heartbeat', main: '98', suffix: 'bpm', subtext:'Heart Rate'}
+        = render partial: 'layouts/content_graph', locals: {image: 'fa fa-heartbeat', main: '98', suffix: 'bpm', subtext:'HEART RATE'}
       .widget.col-3.light
+        = render partial: 'layouts/content_graph_success', locals: {image: 'fa fa-tint', main: '12 | 8', suffix: 'cmHg', subtext:'BLOOD PRESSURE'}
       .widget.col-3.light
+        = render partial: 'layouts/content_graph_success', locals: {image: 'fa fa-heartbeat', main: '118', suffix: 'mgdl', subtext:'BLOOD GLUCOSE'}
+    .dash-row.row
+      .widget.col-3
+        = render partial: 'layouts/content_graph', locals: {image: 'fa fa-cuttlery', main: '61', suffix: 'kg', subtext:'BODY WEIGHT'}
+      .widget.col-3
+        = render partial: 'layouts/content_graph', locals: {image: 'fa fa-user', main: '16', suffix: '%', subtext:'FAT PERCENTAGE'}
+      .widget.col-3.light
+        = render partial: 'layouts/content_graph_success', locals: {image: 'fa fa-database', main: '680', suffix: 'kcal', subtext:'AVG. CONSUMPTION'}
+      .widget.col-3.light
+        = render partial: 'layouts/content_graph_success', locals: {image: 'fa fa-circle-o-notch', main: '85', suffix: '%', subtext:'BODY HIDRATION'}
     
   
 
