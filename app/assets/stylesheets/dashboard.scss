@@ -9,6 +9,9 @@ $white: #EBEBEC;
   display: flex;
 }
 
+.dashboard {
+  opacity: 0.95;
+}
 
 .widget {
   min-height: 150px;
@@ -57,7 +60,7 @@ $white: #EBEBEC;
   justify-content: center;
   align-items: center;
   font-weight: 200;
-  
+
   .content-suffix, .content-sub-text {
     opacity: 0.5;
   } 
@@ -107,6 +110,37 @@ $white: #EBEBEC;
   .content-sub-icon, .content-sub-graph {
     margin: 1rem 0;
   }
+
+  &.long-bar {
+    display: flex;
+    flex-direction: row;
+
+    .content-info {
+      flex-grow: 1;
+    }
+
+    .content-chart {
+      height: 100%;
+      flex-grow: 7;
+      width:0;
+    }
+  }
+}
+
+.axis {
+  .domain {
+    display: none;
+  }
+
+  .tick line {
+    display: none;
+  }
+
+  text {
+    font-size: 17px;
+    transform: scaleX(1.2);
+    opacity: 0.3;
+  }
 }
 
 
@@ -124,6 +158,16 @@ $white: #EBEBEC;
   &.light {
     .content {
       color: $dark-blue;
+
+      .content-sub-text {
+        font-weight: 400;
+      }
+
+      .axis {
+        text {
+          color: $dark-blue;
+        }
+      }
     }
   }
 }

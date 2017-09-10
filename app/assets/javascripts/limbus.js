@@ -1,6 +1,6 @@
 
 function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function genData(n) {
@@ -8,13 +8,12 @@ function genData(n) {
 	while(n--) {
 		array.push(getRandomInt(0, 100))
 	}
-return array
+	return array
 }
 
 getWidth = function (elem) {
 	rect = elem.node().getBoundingClientRect()
-	return rect.right - rect.left
-	
+	return rect.right - rect.left	
 }
 
 getHeight = function (elem) {
@@ -31,7 +30,6 @@ getPadding = function (elem) {
 
 	return max(max(top, bottom), max(left, right))
 }
-
 
 function lineChart(elem, dataset, color, curve) {
 	padding = getPadding(elem)
@@ -84,8 +82,6 @@ function lineChart(elem, dataset, color, curve) {
 	g.style('transform', 'translate(10%, 0px)')
 }
 
-
-
 function circleChart(elem, percent, color) {
 	padding = 10
 	h = getHeight(elem) - padding
@@ -93,7 +89,7 @@ function circleChart(elem, percent, color) {
 	r = h > w ? w/2 : h/2
 
 	color = color || 'orange'
-	svg = elem.append('svg').attr('heigh', h).attr('width', w)
+	svg = elem.append('svg').attr('height', h).attr('width', w)
 	g = svg.append('g').attr('height', h).attr('width', w)
 	
 	x = (x, r, theta) => x + r * Math.sin(theta)						 
@@ -108,14 +104,6 @@ function circleChart(elem, percent, color) {
 					.startAngle(0)
 
 	tau = 2 * Math.PI
-
-
-
-	// background = g.append('path')
-	// 								.datum({endAngle: tau})
-	// 								.attr('d', arc)
-	// 								.style("fill", "#ddd")
-	// 								.style('transform', 'translate(' + w/2 + 'px, ' + h/2 + 'px)')
 
 	foreground = g.append('path')
 									.datum({endAngle: 0})
@@ -171,20 +159,70 @@ function circleChart(elem, percent, color) {
 	text.transition()
 			.duration(2000)
 			.text(d3.interpolate(text.text, percent + '%'))
+}
 
+function barChart(elem, data, color) {
+	days = [{day:"Mo"},
+    {day:"Tu"},
+    {day:"We"},
+    {day:"Th"},
+    {day:"Fr"},
+    {day:"Sa"},
+    {day:"Su"}]
 
+	padding = 10
+	h = getHeight(elem)
+	w = getWidth(elem) - padding
+	color = color || 'orange'
 
+	xScale = d3.scaleLinear()
+	           .domain([0, data.length])
+	           .range([0, w])
 
+	band = d3.scaleBand()
+					 .domain(d3.range(data.length))
+					 .range([0,w])
+					 .padding(0.05)
+
+	yScale = d3.scaleLinear()
+	           .domain([0, d3.max(data)])
+	           .range([0, h * 0.60])
+
+	svg = elem.append('svg').attr('height', h).attr('width', w)
+	bars = svg.append('g')
+
+	bars.selectAll('rect')
+			.data(data)
+			.enter()
+			.append('rect')
+			.attr('x', (d, i) => xScale(i))
+			.attr('y', (d) => h - yScale(d))
+			.transition()
+			.duration(2000)
+			.attr('width', band.bandwidth())
+			.attr('height', (d) => yScale(d))
+			.attr('fill', '#2A3760')
+
+	oScale = d3.scaleBand()
+    .domain(days.map(function(d){ return d.day}))
+    .range([0, w*0.95])
+
+  dg = svg.append('g').attr('class', 'axis')
+  xAxis = d3.axisBottom(oScale)
+	dg.call(xAxis).style('transform', 'translate(1px, 0px)')
 }
 
 $(document).on('limbus#index:loaded', function () {
 	h = 500
 	w = 500
-	svg = d3.select('body').append('svg').attr('height', h).attr('width', w)
-	elem = svg
+	// svg = d3.select('body').append('svg').attr('height', h).attr('width', w)
+	// elem = svg
 	dataset = [6, 5, 3, 4, 2, 1]
 	lineChart(d3.select('.dash-row:nth-child(2) .widget:nth-child(2) .content-sub-graph'), [4, 2, 4, 1], '#3DB3C0', d3.curveCatmullRom)
 	lineChart(d3.select('.dash-row:nth-child(2) .widget:nth-child(1) .content-sub-graph'), [6,5,3, 4, 2, 1], '#3DB3C0')
+	lineChart(d3.select('.dash-row:nth-child(3) .widget:nth-child(1) .content-sub-graph'), [4, 6, 2, 5, 2], '#F55D8D')
+	lineChart(d3.select('.dash-row:nth-child(3) .widget:nth-child(2) .content-sub-graph'), [5, 1, 7, 3, 3], '#FAC963')
+	barChart(d3.select('.dash-row:nth-child(4) .content-chart'), genData(100), '#3DB3C0')
 	// circleChart(d3.select('.dash-row:nth-child(2) .widget:nth-child(1) .content-sub-text'), 1, 'blue')
 	
 })
