@@ -68,8 +68,10 @@ $white: #EBEBEC;
   .content-sub-text {
     font-weight: 300;
     font-size: 12px;
+    opacity: 0.8;
   }
   .content-main-text {
+    opacity: 0.8;
     & > .fa {
       font-size: 2.8rem;
       margin-bottom: 1rem;
@@ -78,16 +80,19 @@ $white: #EBEBEC;
     .content-prefix {
       font-size: 1rem;
       position: relative;
-      bottom: 1rem;
+      bottom: 0.6rem;
       right: 0.5rem;
     }
     .content-accent {
-      font-size: 2.6rem;
+      // font-size: 2.6rem;
+      font-size: 2rem;
+
       margin: 5px;
     }
     
     .content-suffix {
-      font-size: 1.6rem;
+      // font-size: 1.6rem;
+      font-size: 1.25rem;
     }
 
   }
@@ -125,6 +130,11 @@ $white: #EBEBEC;
       width:0;
     }
   }
+
+  .content-main-graph {
+    min-height: 8rem;
+    min-width: 8rem;
+  }
 }
 
 .axis {
@@ -144,6 +154,11 @@ $white: #EBEBEC;
 }
 
 
+.content-main-graph {
+  svg {
+    overflow: visible !important;
+  }
+}
 
 .widget {
   &.dark {
@@ -156,6 +171,16 @@ $white: #EBEBEC;
     }
   }
   &.light {
+    text {
+      color: $dark-blue !important;
+    }
+
+    .complete-circle {
+      position: absolute;
+      left: 46%;
+      top: 32%;
+      font-size: 1.2em;
+    }
     .content {
       color: $dark-blue;
 

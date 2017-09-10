@@ -36,6 +36,20 @@
       .widget.col-12.light
         = render partial: 'layouts/content_long_graph'
 
+    .dash-row.row
+      .widget.col-2
+        = render partial: 'layouts/content_circle_graph', locals: {main: 'Mg', subtext: 'STRENGHT'}
+      .widget.col-2
+        = render partial: 'layouts/content_circle_graph', locals: {main: 'Zn', subtext: 'MUSCLES'}
+      .widget.col-2.light
+        = render partial: 'layouts/content_circle_graph', locals: {main: 'I', subtext: 'MIND'}
+      .widget.col-2.light
+        = render partial: 'layouts/content_circle_graph', locals: {main: 'Ca', subtext: 'BONES & TEETH'}
+      .widget.col-2
+        = render partial: 'layouts/content_circle_graph', locals: {main: 'K', subtext: 'BlOOD PRESSURE'}
+      .widget.col-2.light
+        = render partial: 'layouts/content_circle_graph', locals: {main: 'N3', subtext: 'YOUTH'}
+
     
   
 

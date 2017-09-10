@@ -83,15 +83,14 @@ function lineChart(elem, dataset, color, curve) {
 }
 
 function circleChart(elem, percent, color) {
-	padding = 10
-	h = getHeight(elem) - padding
-	w = getWidth(elem) - padding
+	h = getHeight(elem)
+	w = getWidth(elem)
 	r = h > w ? w/2 : h/2
 
 	color = color || 'orange'
 	svg = elem.append('svg').attr('height', h).attr('width', w)
 	g = svg.append('g').attr('height', h).attr('width', w)
-	
+
 	x = (x, r, theta) => x + r * Math.sin(theta)						 
 	y = (y, r, theta) => y + r * (1 - Math.cos(theta))
 	c = (st, r, fn) => (theta) => fn(st, r, theta)
@@ -113,36 +112,40 @@ function circleChart(elem, percent, color) {
 
 	arcTween = function (newAngle) {
 		return function (d) {
+			console.log('called on', d.endAngle, newAngle)
 			interpolate = d3.interpolate(d.endAngle, newAngle)
-			return function(t) {
+			return function (interpolate) {return function(t) {
 				d.endAngle = interpolate(t)
 				return arc(d)
-			}
+			}}(interpolate)
 		}
 	}
 
 	ballTween = function (percent, fn) {
 		return function (d) {
 			interpolate = d3.interpolate(d.percent, percent * tau)
-			return function (t) {
+			return function(interpolate) { return function (t) {
 				d.percent = interpolate(t)
 				return fn(d.percent)
-			}
+			}}(interpolate)
 		}
 	}
 
-	textVal =  '0%'
-	text = g.append('text')
-					.attr('x', w/2)
-					.attr('y', h/2)
-					.text(textVal)
-					.attr('text-anchor', 'middle')
-					.attr('dy', '0.25em')
 
-	foreground.transition()
-						.duration(2000)
-						.attrTween('d', arcTween(percent*tau))
-
+	if(percent < 1) {
+		newText = String(percent).substr(2) + '%'
+		text = g.append('text')
+						.attr('x', w/2)
+						.attr('y', h/2)
+						.text(newText)
+						.attr('text-anchor', 'middle')
+						.attr('dy', '0.25em')
+						.attr('font-size', '1.6em')
+				    .attr('fill', 'white')
+				    .attr('fill-opacity', '0.7')
+	} else {
+		elem.append('i').attr('class', 'fa fa-check complete-circle').attr('aria-hidden', 'true')
+	}
 
 	circle = g.append('circle').datum({percent: 0})
 		 .attr('cx', x(0, r, 0))
@@ -151,14 +154,17 @@ function circleChart(elem, percent, color) {
 		 .style('transform', 'translate(' + w/2 + 'px, 0px)')
 		 .attr('fill', color)
 
+	duration = 500 + 2000 * Math.random()
+	foreground.transition()
+						.duration(duration)
+						.attrTween('d', arcTween(percent*tau))
+
 	circle.transition()
-		 .duration(2000)
+		 .duration(duration)
 		 .attrTween('cx', ballTween(percent, xc))
 		 .attrTween('cy', ballTween(percent, yc))
 
-	text.transition()
-			.duration(2000)
-			.text(d3.interpolate(text.text, percent + '%'))
+			
 }
 
 function barChart(elem, data, color) {
@@ -196,12 +202,14 @@ function barChart(elem, data, color) {
 			.enter()
 			.append('rect')
 			.attr('x', (d, i) => xScale(i))
-			.attr('y', (d) => h - yScale(d))
-			.transition()
-			.duration(2000)
-			.attr('width', band.bandwidth())
+			.attr('y', (d) => h)
 			.attr('height', (d) => yScale(d))
+			.attr('width', band.bandwidth())
 			.attr('fill', '#2A3760')
+			.transition()
+			.delay((d,i) => 1000 * Math.random())
+			.duration((d, i) => 500 + 1000 * Math.random())
+			.attr('y', (d) => h - yScale(d))
 
 	oScale = d3.scaleBand()
     .domain(days.map(function(d){ return d.day}))
@@ -223,7 +231,13 @@ $(document).on('limbus#index:loaded', function () {
 	lineChart(d3.select('.dash-row:nth-child(3) .widget:nth-child(1) .content-sub-graph'), [4, 6, 2, 5, 2], '#F55D8D')
 	lineChart(d3.select('.dash-row:nth-child(3) .widget:nth-child(2) .content-sub-graph'), [5, 1, 7, 3, 3], '#FAC963')
 	barChart(d3.select('.dash-row:nth-child(4) .content-chart'), genData(100), '#3DB3C0')
-	// circleChart(d3.select('.dash-row:nth-child(2) .widget:nth-child(1) .content-sub-text'), 1, 'blue')
+
+	circleChart(d3.select('.dash-row:nth-child(5) .widget:nth-child(1) .content-main-graph'), Math.random().toFixed(2), '#F55D8D')
+	circleChart(d3.select('.dash-row:nth-child(5) .widget:nth-child(2) .content-main-graph'), Math.random().toFixed(2), '#3DB3C0')
+	circleChart(d3.select('.dash-row:nth-child(5) .widget:nth-child(3) .content-main-graph'), 1, '#3B5B7A')
+	circleChart(d3.select('.dash-row:nth-child(5) .widget:nth-child(4) .content-main-graph'), 1, '#3B5B7A')
+	circleChart(d3.select('.dash-row:nth-child(5) .widget:nth-child(5) .content-main-graph'), Math.random().toFixed(2), '#3DB3C0')
+	circleChart(d3.select('.dash-row:nth-child(5) .widget:nth-child(6) .content-main-graph'), 1, '#3B5B7A')
 	
 })
 
