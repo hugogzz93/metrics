@@ -1,3 +1,9 @@
+GIT
+  remote: git@github.com:hugogzz93/one_signal_gem.git
+  revision: 85c8ca97b32ad4f6701c97eb5e831eb35594a350
+  specs:
+    one_signal (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -189,6 +195,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
+  one_signal!
   puma (~> 3.0)
   rails (~> 5.0.1)
   sass-rails (~> 5.0)
