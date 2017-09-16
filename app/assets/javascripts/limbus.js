@@ -163,8 +163,6 @@ function circleChart(elem, percent, color) {
 		 .duration(duration)
 		 .attrTween('cx', ballTween(percent, xc))
 		 .attrTween('cy', ballTween(percent, yc))
-
-			
 }
 
 function barChart(elem, data, color) {
@@ -188,7 +186,7 @@ function barChart(elem, data, color) {
 	band = d3.scaleBand()
 					 .domain(d3.range(data.length))
 					 .range([0,w])
-					 .padding(0.05)
+					 .padding(0.5)
 
 	yScale = d3.scaleLinear()
 	           .domain([0, d3.max(data)])
@@ -220,16 +218,38 @@ function barChart(elem, data, color) {
 	dg.call(xAxis).style('transform', 'translate(1px, 0px)')
 }
 
+function progressBar(elem, percent, color) {
+	padding = getPadding(elem)
+	h = getHeight(elem)
+	w = getWidth(elem)
+	svg = elem.append('svg').attr('height', h).attr('width', w)
+	g = svg.append('g')
+	xScale = d3.scaleLinear()
+						 .domain([0, 100])
+						 .range([0+padding, w - padding])
+	// yScale = d3.scaleLinear()
+						 // .domain([d3.max(dataset), 0])
+						 // .range([0+padding, h - padding])
+
+	line = d3.line().x((d, i) => xScale(i)).y(d => yScale(d)).curve(curve)
+	path = g.append('path')
+			.attr('d', line(percent))
+			.attr('fill', 'none')
+			.attr('stroke', color)
+
+
+}
+
 $(document).on('limbus#index:loaded', function () {
 	h = 500
 	w = 500
 	// svg = d3.select('body').append('svg').attr('height', h).attr('width', w)
 	// elem = svg
 	dataset = [6, 5, 3, 4, 2, 1]
-	lineChart(d3.select('.dash-row:nth-child(2) .widget:nth-child(2) .content-sub-graph'), [4, 2, 4, 1], '#3DB3C0', d3.curveCatmullRom)
-	lineChart(d3.select('.dash-row:nth-child(2) .widget:nth-child(1) .content-sub-graph'), [6,5,3, 4, 2, 1], '#3DB3C0')
-	lineChart(d3.select('.dash-row:nth-child(3) .widget:nth-child(1) .content-sub-graph'), [4, 6, 2, 5, 2], '#F55D8D')
-	lineChart(d3.select('.dash-row:nth-child(3) .widget:nth-child(2) .content-sub-graph'), [5, 1, 7, 3, 3], '#FAC963')
+	lineChart(d3.select('.dash-row:nth-child(2) .widget:nth-child(2) .content-sub-graph'), genData(8), '#3DB3C0', d3.curveCatmullRom)
+	lineChart(d3.select('.dash-row:nth-child(2) .widget:nth-child(1) .content-sub-graph'), genData(getRandomInt(4, 12)), '#3DB3C0')
+	lineChart(d3.select('.dash-row:nth-child(3) .widget:nth-child(1) .content-sub-graph'), genData(getRandomInt(4, 12)), '#F55D8D')
+	lineChart(d3.select('.dash-row:nth-child(3) .widget:nth-child(2) .content-sub-graph'), genData(getRandomInt(4, 12)), '#FAC963')
 	barChart(d3.select('.dash-row:nth-child(4) .content-chart'), genData(100), '#3DB3C0')
 
 	circleChart(d3.select('.dash-row:nth-child(5) .widget:nth-child(1) .content-main-graph'), Math.random().toFixed(2), '#F55D8D')

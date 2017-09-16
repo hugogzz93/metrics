@@ -10,9 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170813162153) do
+ActiveRecord::Schema.define(version: 20170916222722) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "limbuses", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "measurements", force: :cascade do |t|
+    t.decimal  "value",        precision: 5, scale: 2, null: false
+    t.integer  "statistic_id",                         null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.index ["statistic_id"], name: "index_measurements_on_statistic_id", using: :btree
+  end
+
+  create_table "statistic_goals", force: :cascade do |t|
+    t.decimal  "value",        precision: 5, scale: 2, null: false
+    t.integer  "statistic_id",                         null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.index ["statistic_id"], name: "index_statistic_goals_on_statistic_id", using: :btree
+  end
+
+  create_table "statistics", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.string   "unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
