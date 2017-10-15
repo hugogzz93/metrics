@@ -15,9 +15,11 @@
 @import "bootstrap";
 @import 'mixins';
 @import "variables.scss";
-@import "dashboard";
+@import "modules/dashboard";
+@import "modules/food_form";
 @import "modules/content";
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
 
 body {
 	font-family: 'Roboto', sans-serif;
