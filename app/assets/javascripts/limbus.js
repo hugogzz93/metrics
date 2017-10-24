@@ -8,6 +8,14 @@ $(document).on('limbus#index:loaded', function () {
 		circleChart(d3.select('.dash-row:nth-child(5) .widget:nth-child(' + i + ') .content-main-graph'), num, color)		
 	}
 
+	var handle3 = (i, num, color) => {
+		circleChart(d3.select('.dash-row:nth-child(6) .widget:nth-child(' + i + ') .content-main-graph'), num, color)		
+	}
+
+	var handle4 = (i, num, color) => {
+		circleChart(d3.select('.dash-row:nth-child(7) .widget:nth-child(' + i + ') .content-main-graph'), num, color)		
+	}
+
 	fetch('http://localhost:3000/api/daily_summary')
 	.then(response => response.json())
 	.then(data => {
@@ -45,6 +53,20 @@ $(document).on('limbus#index:loaded', function () {
 			// handle2(4, x[], '#3B5B7A');
 			handle2(5, x[306], '#3DB3C0');
 			handle2(6, x[303], '#3B5B7A');
+
+			handle3(1, x[320], '#F55D8D');
+			handle3(2, x[404], '#3DB3C0');
+			handle3(3, x[405], '#3B5B7A');
+			handle3(4, x[415], '#3B5B7A');
+			handle3(5, x[418], '#3DB3C0');
+			handle3(6, x[401], '#3B5B7A');
+
+			handle4(1, x[328], '#F55D8D');
+			handle4(2, x[323], '#3DB3C0');
+			handle4(3, x[430], '#3B5B7A');
+			handle4(4, x[435], '#3B5B7A');
+			handle4(5, x[269], '#3DB3C0');
+			handle4(6, x[601], '#3B5B7A');
 		});
 
 	})

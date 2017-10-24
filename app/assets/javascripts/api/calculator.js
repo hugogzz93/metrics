@@ -47,10 +47,10 @@ const Calculator = {
 																												id: nutrient.nutrient_id,
 																												unit: nutrient.unit,
 																												value:0};
-        if(this.normalizable(nutrient.unit)) {
-        	total[nutrient.nutrient_id].unit = 'g';
-        	total[nutrient.nutrient_id].value += this.parseValue(nutrient, f);
-        } else 
+        // if(this.normalizable(nutrient.unit)) {
+        	// total[nutrient.nutrient_id].unit = 'g';
+        	// total[nutrient.nutrient_id].value += this.parseValue(nutrient, f);
+        // } else 
 					total[nutrient.nutrient_id].value += Number.parseFloat(nutrient.value) * (f.grams / 100);
 			}
 		}

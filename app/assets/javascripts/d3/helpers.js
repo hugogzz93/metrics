@@ -41,7 +41,7 @@ function lineChart(elem, dataset, color, curve) {
 						 .domain([0, dataset.length, 0])
 						 .range([0+padding, w - padding])
 	yScale = d3.scaleLinear()
-						 .domain([d3.max(dataset), 0])
+						 .domain([d3.max(dataset), d3.min(dataset)])
 						 .range([0+padding, h - padding])
 	curve = curve || d3.curveLinear
 	line = d3.line().x((d, i) => xScale(i)).y(d => yScale(d)).curve(curve)
