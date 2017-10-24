@@ -9,9 +9,9 @@ const FoodDB = {
 	},
 
 	urlify() {
-		string = ''
+		var string = ''
 		_ = function (data) {
-			key = Object.keys(data)[0];
+			var key = Object.keys(data)[0];
 			return '&' + key + '=' + data[key];
 		}
 		for(arg of arguments) {
@@ -25,7 +25,7 @@ const FoodDB = {
 	},
 
 	fetch(_foodlist) {
-		_foodlist = _foodlist.map(i => {return {'ndbno': i}})
+		var _foodlist = _foodlist.map(i => {return {'ndbno': i}})
 		return API.get(this.urlify(_foodlist, {'api_key': this.api_key}))
 	}
 

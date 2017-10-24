@@ -8,6 +8,7 @@ end
 gem 'ffaker'
 gem 'pg'
 gem 'one_signal', :git => 'git@github.com:hugogzz93/one_signal_gem.git'
+gem 'active_model_serializers', '~> 0.10.0'
 
 gem 'slim-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
