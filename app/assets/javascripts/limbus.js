@@ -5,16 +5,28 @@ $(document).on('limbus#index:loaded', function () {
 	}
 
 	var handle2 = (i, num, color) => {
+		if(num >= 1) {
+			$('.dash-row:nth-child(5) .widget:nth-child(' + i + ')').addClass('light');
+			color = '#3B5B7A';
+		}
 		num = num.toFixed(2);
 		circleChart(d3.select('.dash-row:nth-child(5) .widget:nth-child(' + i + ') .content-main-graph'), num, color)		
 	}
 
 	var handle3 = (i, num, color) => {
+		if(num >= 1) {
+			$('.dash-row:nth-child(6) .widget:nth-child(' + i + ')').addClass('light');
+			color = '#3B5B7A';
+		}
 		num = num.toFixed(2);
 		circleChart(d3.select('.dash-row:nth-child(6) .widget:nth-child(' + i + ') .content-main-graph'), num, color)		
 	}
 
 	var handle4 = (i, num, color) => {
+		if(num >= 1) {
+			$('.dash-row:nth-child(7) .widget:nth-child(' + i + ')').addClass('light');
+			color = '#3B5B7A';
+		}
 		num = num.toFixed(2);
 		circleChart(d3.select('.dash-row:nth-child(7) .widget:nth-child(' + i + ') .content-main-graph'), num, color)		
 	}
@@ -51,8 +63,8 @@ $(document).on('limbus#index:loaded', function () {
 		Repo.fetchFoodData(c).then(fn).then(x => {
 			handle2(1, x[304], '#F55D8D');
 			handle2(2, x[309], '#3DB3C0');
-			handle2(3, x[301], '#3B5B7A');
-			handle2(4, x[255], '#3B5B7A');
+			handle2(3, x[255], '#3B5B7A');
+			handle2(4, x[301], '#3B5B7A');
 			handle2(5, x[306], '#3DB3C0');
 			handle2(6, x[303], '#3B5B7A');
 

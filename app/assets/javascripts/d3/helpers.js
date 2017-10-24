@@ -137,6 +137,7 @@ function circleChart(elem, percent, color) {
 			newText = '0%'
 		else
 			newText = String(percent).substr(2) + '%'
+
 		text = g.append('text')
 						.attr('x', w/2)
 						.attr('y', h/2)
@@ -147,6 +148,7 @@ function circleChart(elem, percent, color) {
 				    .attr('fill', 'white')
 				    .attr('fill-opacity', '0.7')
 	} else {
+		percent = 1;
 		elem.append('i').attr('class', 'fa fa-check complete-circle').attr('aria-hidden', 'true')
 	}
 

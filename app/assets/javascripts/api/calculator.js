@@ -40,18 +40,15 @@ const Calculator = {
 	},
 
 	calculate: function (foods) {
-		total = {};
+		var total = {};
 		for(f of foods) {
 			for(nutrient of f.nutrients) {
-				total[nutrient.nutrient_id] = total[nutrient.name] || {name: nutrient.name,
+				total[nutrient.nutrient_id] = total[nutrient.nutrient_id] || {name: nutrient.name,
 																												id: nutrient.nutrient_id,
 																												unit: nutrient.unit,
 																												value:0};
-        // if(this.normalizable(nutrient.unit)) {
-        	// total[nutrient.nutrient_id].unit = 'g';
-        	// total[nutrient.nutrient_id].value += this.parseValue(nutrient, f);
-        // } else 
-					total[nutrient.nutrient_id].value += Number.parseFloat(nutrient.value) * (f.grams / 100);
+        // if(nutrient.nutrient_id == 255) debugger
+				total[nutrient.nutrient_id].value += Number.parseFloat(nutrient.value) * (f.grams / 100);
 			}
 		}
 		return total;
