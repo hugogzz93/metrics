@@ -1,0 +1,2 @@
+class NutrientGoal < ApplicationRecord
+end

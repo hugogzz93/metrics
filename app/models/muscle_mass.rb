@@ -1,0 +1,2 @@
+class MuscleMass < ApplicationRecord
+end

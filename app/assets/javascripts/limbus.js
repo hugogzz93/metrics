@@ -13,3 +13,4 @@ $(document).on('limbus#index:loaded', function () {
 	circleChart(d3.select('.dash-row:nth-child(5) .widget:nth-child(6) .content-main-graph'), 1, '#3B5B7A')
 })
 
+// fetch('http://localhost:3000/api/nutrient_goals').then(response => response.json()).then(data => console.log(data))

@@ -10,35 +10,64 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170916222722) do
+ActiveRecord::Schema.define(version: 20171024042459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "consumptions", force: :cascade do |t|
+    t.integer  "food_id",    null: false
+    t.integer  "grams"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "date"
+    t.index ["food_id"], name: "index_consumptions_on_food_id", using: :btree
+  end
+
+  create_table "fat_percentages", force: :cascade do |t|
+    t.string   "value"
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "foods", force: :cascade do |t|
+    t.string   "name"
+    t.string   "usda_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "external",   default: true
+  end
 
   create_table "limbuses", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "measurements", force: :cascade do |t|
-    t.decimal  "value",        precision: 5, scale: 2, null: false
-    t.integer  "statistic_id",                         null: false
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.index ["statistic_id"], name: "index_measurements_on_statistic_id", using: :btree
+  create_table "muscle_masses", force: :cascade do |t|
+    t.string   "value"
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "statistic_goals", force: :cascade do |t|
-    t.decimal  "value",        precision: 5, scale: 2, null: false
-    t.integer  "statistic_id",                         null: false
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.index ["statistic_id"], name: "index_statistic_goals_on_statistic_id", using: :btree
+  create_table "nutrient_goals", force: :cascade do |t|
+    t.string   "value"
+    t.string   "nutrient_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  create_table "statistics", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "unit"
+  create_table "water_percentages", force: :cascade do |t|
+    t.string   "value"
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "weights", force: :cascade do |t|
+    t.string   "value"
+    t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

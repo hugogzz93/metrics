@@ -1,0 +1,2 @@
+class FatPercentage < ApplicationRecord
+end

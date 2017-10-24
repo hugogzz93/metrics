@@ -15,9 +15,9 @@
         = render partial: 'layouts/content_picture', locals: {image: 'fa fa-dribbble', subtext: 'CHEMOSYNTH'}
     .dash-row.row
       .widget.col-3
-        = render partial: 'layouts/content_graph', locals: {image: 'fa fa-thermometer-empty', main: '48', suffix: 'o', subtext:'TEMPERATURE'}
+        = render partial: 'layouts/content_graph', locals: {image: 'fa fa-thermometer-empty', main: '48', suffix: '%', subtext:'MUSCLE PERCENTAGE'}
       .widget.col-3
-        = render partial: 'layouts/content_graph', locals: {image: 'fa fa-heartbeat', main: '98', suffix: 'bpm', subtext:'HEART RATE'}
+        = render partial: 'layouts/content_graph', locals: {image: 'fa fa-heartbeat', main: '98', suffix: '%', subtext:'WATER PERCENTAGE'}
       .widget.col-3.light
         = render partial: 'layouts/content_graph_success', locals: {image: 'fa fa-tint', main: '12 | 8', suffix: 'cmHg', subtext:'BLOOD PRESSURE'}
       .widget.col-3.light
