@@ -131,8 +131,12 @@ function circleChart(elem, percent, color) {
 	}
 
 
+	percent = percent||0;
 	if(percent < 1) {
-		newText = String(percent).substr(2) + '%'
+		if(percent == 0)
+			newText = '0%'
+		else
+			newText = String(percent).substr(2) + '%'
 		text = g.append('text')
 						.attr('x', w/2)
 						.attr('y', h/2)

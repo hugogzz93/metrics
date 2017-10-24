@@ -34,3 +34,7 @@ body {
 .flex-item {
 	flex-grow: 1;
 }
+
+svg:not(:root) {
+	overflow:visible;
+}

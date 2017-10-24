@@ -1,18 +1,21 @@
 $(document).on('limbus#index:loaded', function () {
 	var handle = (fn, query, arr, color) => {
 		$('.content-accent', query).html(arr[arr.length - 1]);
-		fn(d3.select(query + ' .content-sub-graph'), arr, color);
+		fn(d3.select(query + ' .content-sub-graph'), arr, color, Math.random() > .5 ? d3.curveCatmullRom : null);
 	}
 
 	var handle2 = (i, num, color) => {
+		num = num.toFixed(2);
 		circleChart(d3.select('.dash-row:nth-child(5) .widget:nth-child(' + i + ') .content-main-graph'), num, color)		
 	}
 
 	var handle3 = (i, num, color) => {
+		num = num.toFixed(2);
 		circleChart(d3.select('.dash-row:nth-child(6) .widget:nth-child(' + i + ') .content-main-graph'), num, color)		
 	}
 
 	var handle4 = (i, num, color) => {
+		num = num.toFixed(2);
 		circleChart(d3.select('.dash-row:nth-child(7) .widget:nth-child(' + i + ') .content-main-graph'), num, color)		
 	}
 
@@ -33,7 +36,6 @@ $(document).on('limbus#index:loaded', function () {
 		var c = data.consumption.map(c => {return {usda_id: c.usda_id, grams: c.grams}});
 		var fn = function (d) {
 			return function (c) {
-				console.log(d);
 				la = {}
 				for( f of d.nutrientGoals){
 					if(c[f.nutrient_id]){
@@ -50,7 +52,7 @@ $(document).on('limbus#index:loaded', function () {
 			handle2(1, x[304], '#F55D8D');
 			handle2(2, x[309], '#3DB3C0');
 			handle2(3, x[301], '#3B5B7A');
-			// handle2(4, x[], '#3B5B7A');
+			handle2(4, x[255], '#3B5B7A');
 			handle2(5, x[306], '#3DB3C0');
 			handle2(6, x[303], '#3B5B7A');
 
