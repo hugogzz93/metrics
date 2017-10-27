@@ -47,7 +47,7 @@ const Calculator = {
 																												id: nutrient.nutrient_id,
 																												unit: nutrient.unit,
 																												value:0};
-        // if(nutrient.nutrient_id == 255) debugger
+        // if(nutrient.nutrient_id == 208) debugger
 				total[nutrient.nutrient_id].value += Number.parseFloat(nutrient.value) * (f.grams / 100);
 			}
 		}

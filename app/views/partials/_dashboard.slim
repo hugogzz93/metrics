@@ -18,10 +18,10 @@
         = render partial: 'layouts/content_graph', locals: {image: 'fa fa-thermometer-empty', main: '48', suffix: '%', subtext:'MUSCLE PERCENTAGE'}
       .widget.col-3
         = render partial: 'layouts/content_graph', locals: {image: 'fa fa-heartbeat', main: '98', suffix: '%', subtext:'WATER PERCENTAGE'}
-      .widget.col-3.light
-        = render partial: 'layouts/content_graph_success', locals: {image: 'fa fa-tint', main: '12 | 8', suffix: 'cmHg', subtext:'BLOOD PRESSURE'}
-      .widget.col-3.light
-        = render partial: 'layouts/content_graph_success', locals: {image: 'fa fa-heartbeat', main: '118', suffix: 'mgdl', subtext:'BLOOD GLUCOSE'}
+      .widget.col-3
+        = render partial: 'layouts/content_circle_graph', locals: {main: 'Protein', subtext: ''}
+      .widget.col-3
+        = render partial: 'layouts/content_circle_graph', locals: {main: 'Calories', subtext: ''}
     .dash-row.row
       .widget.col-3
         = render partial: 'layouts/content_graph', locals: {image: 'fa fa-cuttlery', main: '61', suffix: 'kg', subtext:'BODY WEIGHT'}
@@ -29,8 +29,8 @@
         = render partial: 'layouts/content_graph', locals: {image: 'fa fa-user', main: '16', suffix: '%', subtext:'FAT PERCENTAGE'}
       .widget.col-3.light
         = render partial: 'layouts/content_graph_success', locals: {image: 'fa fa-database', main: '680', suffix: 'kcal', subtext:'AVG. CONSUMPTION'}
-      .widget.col-3.light
-        = render partial: 'layouts/content_graph_success', locals: {image: 'fa fa-circle-o-notch', main: '85', suffix: '%', subtext:'BODY HIDRATION'}
+      .widget.col-3
+        = render partial: 'layouts/content_graph', locals: {image: 'fa fa-clock-o', main: '', suffix: 'Hrs', subtext:'SLEEP'}
     .dash-row.row
       .widget.col-12.light
         = render partial: 'layouts/content_long_graph'
@@ -69,7 +69,7 @@
       .widget.col-2
         = render partial: 'layouts/content_circle_graph', locals: {main: 'E', subtext: 'CELL PROTECTION'}
       .widget.col-2
-        = render partial: 'layouts/content_circle_graph', locals: {main: 'K', subtext: 'INFLAMMATION'}
+        = render partial: 'layouts/content_circle_graph', locals: {main: 'Vit K', subtext: 'INFLAMMATION'}
       .widget.col-2
         = render partial: 'layouts/content_circle_graph', locals: {main: 'FOLATE', subtext: 'ABSORBTION'}
       .widget.col-2

@@ -172,8 +172,29 @@ $white: #EBEBEC;
   }
   &.light {
     text {
-      color: $dark-blue !important;
+      fill: $dark-blue !important;
+      display: none;
     }
+
+    &.alt {
+      text {
+        display: inherit;
+      }
+      i {
+        display: none;
+      }
+    }
+    &:hover {
+      text {
+        display: inherit;
+      }
+
+      i {
+        display: none;
+      }
+
+    }
+
 
     .complete-circle {
       position: absolute;
@@ -195,4 +216,8 @@ $white: #EBEBEC;
       }
     }
   }
+}
+
+.percent-btn {
+  cursor: pointer;
 }

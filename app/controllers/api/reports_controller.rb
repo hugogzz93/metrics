@@ -6,10 +6,11 @@ class Api::ReportsController < ApplicationController
 																											 'day',
 																											 :date),
 														each_serializer: ConsumptionSerializer),
-			weights: 						Weight.order(:date).limit(4),
-			musclesPercentages: MuscleMass.order(:date).limit(4),
-			waterPercentages: 	WaterPercentage.order(:date).limit(4),
-			fatPercentages:  		FatPercentage.order(:date).limit(4),
+			weights: 						Weight.order(date: :desc).limit(4),
+			musclesPercentages: MuscleMass.order(date: :desc).limit(4),
+			waterPercentages: 	WaterPercentage.order(date: :desc).limit(4),
+			fatPercentages:  		FatPercentage.order(date: :desc).limit(4),
+			sleepTime: 					Sleep.order(date: :desc).limit(4),
 			nutrientGoals: 			NutrientGoal.all
 		}
 		

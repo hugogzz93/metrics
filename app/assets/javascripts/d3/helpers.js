@@ -132,11 +132,26 @@ function circleChart(elem, percent, color) {
 
 
 	percent = percent||0;
-	if(percent < 1) {
-		if(percent == 0)
-			newText = '0%'
-		else
-			newText = String(percent).substr(2) + '%'
+	// if(percent < 1) {
+		// if(percent == 0)
+			// newText = '0%'
+		// else
+			// newText = String(percent).substr(2) + '%'
+
+			// 
+				if(percent == 0)
+					newText = '0%';
+				else if(percent > 10) {
+					newText = '999%';
+					elem.append('i').attr('class', 'fa fa-check complete-circle').attr('aria-hidden', 'true')
+				}
+				else if(percent > 1){
+					newText = (percent*100).toFixed(0) + '%'
+					elem.append('i').attr('class', 'fa fa-check complete-circle').attr('aria-hidden', 'true')
+				}
+				else
+					newText = String(percent).substr(2) + '%'
+			// 
 
 		text = g.append('text')
 						.attr('x', w/2)
@@ -147,10 +162,12 @@ function circleChart(elem, percent, color) {
 						.attr('font-size', '1.6em')
 				    .attr('fill', 'white')
 				    .attr('fill-opacity', '0.7')
-	} else {
+	// } else {
+		// percent = 1;
+	// }
+
+	if(percent > 1)
 		percent = 1;
-		elem.append('i').attr('class', 'fa fa-check complete-circle').attr('aria-hidden', 'true')
-	}
 
 	circle = g.append('circle').datum({percent: 0})
 		 .attr('cx', x(0, r, 0))

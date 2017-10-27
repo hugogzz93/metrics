@@ -8,6 +8,12 @@ $(document).on('limbus#index:loaded', function () {
 		if(num >= 1) {
 			$('.dash-row:nth-child(5) .widget:nth-child(' + i + ')').addClass('light');
 			color = '#3B5B7A';
+		} else if(num <= 0.5) {
+			color = '#F55D8D';
+		} else if(num >= 0.75) {
+			color = '#3DB3C0';
+		} else {
+			color = '#FAC963';
 		}
 		num = num.toFixed(2);
 		circleChart(d3.select('.dash-row:nth-child(5) .widget:nth-child(' + i + ') .content-main-graph'), num, color)		
@@ -17,6 +23,12 @@ $(document).on('limbus#index:loaded', function () {
 		if(num >= 1) {
 			$('.dash-row:nth-child(6) .widget:nth-child(' + i + ')').addClass('light');
 			color = '#3B5B7A';
+		} else if(num <= 0.5) {
+			color = '#F55D8D';
+		} else if(num >= 0.75) {
+			color = '#3DB3C0';
+		} else {
+			color = '#FAC963';
 		}
 		num = num.toFixed(2);
 		circleChart(d3.select('.dash-row:nth-child(6) .widget:nth-child(' + i + ') .content-main-graph'), num, color)		
@@ -26,29 +38,75 @@ $(document).on('limbus#index:loaded', function () {
 		if(num >= 1) {
 			$('.dash-row:nth-child(7) .widget:nth-child(' + i + ')').addClass('light');
 			color = '#3B5B7A';
+		} else if(num <= 0.5) {
+			color = '#F55D8D';
+		} else if(num >= 0.75) {
+			color = '#3DB3C0';
+		} else {
+			color = '#FAC963';
 		}
 		num = num.toFixed(2);
 		circleChart(d3.select('.dash-row:nth-child(7) .widget:nth-child(' + i + ') .content-main-graph'), num, color)		
 	}
 
+	function setProtein (current, goal) {
+		num = (current / goal).toFixed(2);
+		if(num >= 1) {
+			$('.dash-row:nth-child(2) .widget:nth-child(3)').addClass('light');
+			color = '#3B5B7A';
+		} else if(num <= 0.5) {
+			color = '#F55D8D';
+		} else if(num >= 0.75) {
+			color = '#3DB3C0';
+		} else {
+			color = '#FAC963';
+		}
+		circleChart(d3.select('.dash-row:nth-child(2) .widget:nth-child(3) .content-main-graph'),num ,color);
+		$('.dash-row:nth-child(2) .widget:nth-child(3) .content-sub-text').html(current.toFixed(0) + 'g');
+	}
+
+	function setEnergy (current, goal) {
+		num = (current / goal).toFixed(2);
+		if(num >= 1) {
+			$('.dash-row:nth-child(2) .widget:nth-child(4)').addClass('light');
+			color = '#3B5B7A';
+		} else if(num <= 0.5) {
+			color = '#F55D8D';
+		} else if(num >= 0.75) {
+			color = '#3DB3C0';
+		} else {
+			color = '#FAC963';
+		}
+		circleChart(d3.select('.dash-row:nth-child(2) .widget:nth-child(4) .content-main-graph'), num, color);
+		$('.dash-row:nth-child(2) .widget:nth-child(4) .content-sub-text').html(current.toFixed(0) + 'kcal');
+	}
+
 	fetch('http://localhost:3000/api/daily_summary')
 	.then(response => response.json())
 	.then(data => {
-		var m = data.musclesPercentages.map(m => Number.parseFloat(m.value));
-		var w = data.waterPercentages.map(m => Number.parseFloat(m.value));
-		var we = data.weights.map(m => Number.parseFloat(m.value));
-		var f = data.fatPercentages.map(m => Number.parseFloat(m.value));
+		var m = data.musclesPercentages.map(m => Number.parseFloat(m.value)).reverse();
+		var w = data.waterPercentages.map(m => Number.parseFloat(m.value)).reverse();
+		var we = data.weights.map(m => Number.parseFloat(m.value)).reverse();
+		var f = data.fatPercentages.map(m => Number.parseFloat(m.value)).reverse();
+		var s = data.sleepTime.map(m => Number.parseFloat(m.value)).reverse();
 		
 		handle(lineChart, '.dash-row:nth-child(2) .widget:nth-child(1)', m, '#3DB3C0');
 		handle(lineChart, '.dash-row:nth-child(2) .widget:nth-child(2)', w, '#3DB3C0');
 		handle(lineChart, '.dash-row:nth-child(3) .widget:nth-child(1)', we, '#F55D8D');
 		handle(lineChart, '.dash-row:nth-child(3) .widget:nth-child(2)', f, '#FAC963');
+		handle(lineChart, '.dash-row:nth-child(3) .widget:nth-child(4)', s, '#FAC963');
 
 
 		var c = data.consumption.map(c => {return {usda_id: c.usda_id, grams: c.grams}});
 		var fn = function (d) {
 			return function (c) {
 				la = {}
+				// setProtein
+				setProtein(c[203].value, (d.weights[0].value)* 2.2 * .91);
+				setEnergy(c[208].value, 2471);
+				// setFats(c[204], 2471/10);
+
+
 				for( f of d.nutrientGoals){
 					if(c[f.nutrient_id]){
 					  la[f.nutrient_id] = Number.parseFloat((Number.parseFloat(c[f.nutrient_id].value)/Number.parseFloat(f.value)).toFixed(2))
@@ -81,21 +139,14 @@ $(document).on('limbus#index:loaded', function () {
 			handle4(4, x[435], '#3B5B7A');
 			handle4(5, x[269], '#3DB3C0');
 			handle4(6, x[601], '#3B5B7A');
+
 		});
 
 	})
 
 	barChart(d3.select('.dash-row:nth-child(4) .content-chart'), genData(98), '#3DB3C0') //cals
 
-
-	// circleChart(d3.select('.dash-row:nth-child(5) .widget:nth-child(1) .content-main-graph'), Math.random().toFixed(2), '#F55D8D') //mg
-	// circleChart(d3.select('.dash-row:nth-child(5) .widget:nth-child(2) .content-main-graph'), Math.random().toFixed(2), '#3DB3C0') //zn
-	// circleChart(d3.select('.dash-row:nth-child(5) .widget:nth-child(3) .content-main-graph'), 1, '#3B5B7A') //i
-	// circleChart(d3.select('.dash-row:nth-child(5) .widget:nth-child(4) .content-main-graph'), 1, '#3B5B7A') //ca
-	// circleChart(d3.select('.dash-row:nth-child(5) .widget:nth-child(5) .content-main-graph'), Math.random().toFixed(2), '#3DB3C0') //k
-	// circleChart(d3.select('.dash-row:nth-child(5) .widget:nth-child(6) .content-main-graph'), 1, '#3B5B7A') //n3
-
-
+	$('.percent-btn').on('click', () => $('.light').toggleClass('alt'));
 
 })
 
