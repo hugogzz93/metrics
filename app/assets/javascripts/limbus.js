@@ -1,4 +1,32 @@
+function toggleForm () {
+	$('.bg, .fg').toggleClass('active');
+}
 $(document).on("limbus#index:loaded", function() {
+	$(document).keypress(function(e) {
+	    if(e.which == 13) toggleForm();
+	});
+
+	$('input[type="submit"]').on('click', function (e) {
+		var _ = (query) => $(query).val();
+		e.preventDefault();
+		var id = $(e.target).attr('id');
+		if(id == 'limbus'){
+			$.ajax({
+				url: '/api/limbus/general',
+				type: 'POST',
+				data: {weight: _('#weight'), sleep: _('#sleep'), fat: _('#fat'), water: _('#water'), muscle: _('#muscle')}
+			})
+		} else {
+			$.ajax({
+				url: 'api/food/new',
+				type: 'POST',
+				data: {food: _('select'), grams: _('#grams')}
+			})
+		}
+		toggleForm();
+	})
+
+	$('select').select2();
 	var handle = (fn, query, arr, color, roll) => {
 		$(".content-accent", query).html(arr[arr.length - 1]);
 		fn(d3.select(query + " .content-sub-graph"), arr, color, roll || null);
