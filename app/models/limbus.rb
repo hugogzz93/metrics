@@ -1,6 +1,5 @@
 class Limbus < ApplicationRecord
-	def self.record(weight, sllp, muscle, water, fat)
-		d = DateTime.now
+	def self.record(weight, sllp, muscle, water, fat, d = DateTime.now)
 		Weight.create(value: weight, date: d)
 		Sleep.create(value: sllp, date: d)
 		MuscleMass.create(value: muscle, date: d)
