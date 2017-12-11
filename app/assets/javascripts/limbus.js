@@ -1,9 +1,9 @@
 function toggleForm () {
-	$('.bg, .fg').toggleClass('active');
+	$('.bg, .fg, .form-box').toggleClass('active');
 }
 $(document).on("limbus#index:loaded", function() {
-	$(document).keypress(function(e) {
-	    if(e.which == 13) toggleForm();
+	$('.content').on('click', function(e) {
+	    toggleForm();
 	});
 
 	$('input[type="submit"]').on('click', function (e) {

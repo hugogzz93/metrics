@@ -6,4 +6,12 @@ class Limbus < ApplicationRecord
 		WaterPercentage.create(value: water, date: d)
 		FatPercentage.create(value: fat, date: d)
 	end
+
+	def self.clear_today
+		Weight.by_date(DateTime.now, 'day').destroy_all
+		Sleep.by_date(DateTime.now, 'day').destroy_all
+		MuscleMass.by_date(DateTime.now, 'day').destroy_all
+		WaterPercentage.by_date(DateTime.now, 'day').destroy_all
+		FatPercentage.by_date(DateTime.now, 'day').destroy_all
+	end
 end
