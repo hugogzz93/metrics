@@ -6,8 +6,9 @@ git_source(:github) do |repo_name|
 end
 
 gem 'ffaker'
-gem 'pg'
-gem 'one_signal', :git => 'git@github.com:hugogzz93/one_signal_gem.git'
+gem 'pg', '~> 0.20'
+
+# gem 'one_signal', :git => 'git@github.com:hugogzz93/one_signal_gem.git'
 gem 'active_model_serializers', '~> 0.10.0'
 
 gem 'slim-rails'

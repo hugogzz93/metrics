@@ -108,6 +108,7 @@ $(document).on("limbus#index:loaded", function() {
 	};
 
 	function setProtein(current, goal) {
+  
 		num = (current / goal).toFixed(2);
 		if (num >= 1) {
 			$(".dash-row:nth-child(2) .widget:nth-child(3)").addClass("light");
@@ -132,6 +133,7 @@ $(document).on("limbus#index:loaded", function() {
 	}
 
 	function setEnergy(current, goal) {
+  
 		num = (current / goal).toFixed(2);
 		if (num >= 1) {
 			$(".dash-row:nth-child(2) .widget:nth-child(4)").addClass("light");
@@ -234,6 +236,7 @@ $(document).on("limbus#index:loaded", function() {
 			Repo.fetchFoodData(c)
 				.then(fn)
 				.then(x => {
+          
 					handle2(1, x[304] || 0, "#F55D8D");
 					handle2(2, x[309] || 0, "#3DB3C0");
 					handle2(3, x[255] || 0, "#3B5B7A");
