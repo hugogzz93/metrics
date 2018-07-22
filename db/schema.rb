@@ -31,6 +31,17 @@ ActiveRecord::Schema.define(version: 20180722022522) do
     t.index ["food_id"], name: "index_consumptions_on_food_id", using: :btree
   end
 
+  create_table "daily_recommended_intakes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "nutrient_id"
+    t.float    "value"
+    t.integer  "measure"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["nutrient_id"], name: "index_daily_recommended_intakes_on_nutrient_id", using: :btree
+    t.index ["user_id"], name: "index_daily_recommended_intakes_on_user_id", using: :btree
+  end
+
   create_table "fat_percentages", force: :cascade do |t|
     t.string   "value"
     t.datetime "date"
@@ -63,6 +74,12 @@ ActiveRecord::Schema.define(version: 20180722022522) do
     t.string   "nutrient_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "nutrients", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sleeps", force: :cascade do |t|
@@ -103,4 +120,6 @@ ActiveRecord::Schema.define(version: 20180722022522) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "daily_recommended_intakes", "nutrients"
+  add_foreign_key "daily_recommended_intakes", "users"
 end
