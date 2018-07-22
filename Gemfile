@@ -7,6 +7,7 @@ end
 
 gem 'ffaker'
 gem 'pg', '~> 0.20'
+gem 'devise'
 
 # gem 'one_signal', :git => 'git@github.com:hugogzz93/one_signal_gem.git'
 gem 'active_model_serializers', '~> 0.10.0'
