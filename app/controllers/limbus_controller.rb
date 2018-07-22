@@ -1,5 +1,5 @@
 class LimbusController < CrudController
-	def index
-		@foods = Food.all
-	end
+  def index
+    @foods = Food.all
+  end
 end
