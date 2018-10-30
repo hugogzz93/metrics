@@ -1,34 +1,34 @@
 class ApiBridge {
-  urlify() {
+  _urlify() {
     let string = this.url
     for(let arg of arguments) {
-      if(this.isIterable(arg))
+      if(this._isIterable(arg))
         for(let item of arg)
-          string += this.makeParam(item);
+          string += this._makeParam(item);
       else
-        string += this.makeParam(arg);
+        string += this._makeParam(arg);
     }
 
-    return this.urlSafe(string);
+    return this._urlSafe(string);
   }
 
-  makeParam(data) {
+  _makeParam(data) {
     let key = Object.keys(data)[0];
     return `&${key}=${data[key]}`;
   }
 
-  urlSafe(string) {
+  _urlSafe(string) {
     return string.replace(/&/, '?');
   }
 
-  isIterable(obj) {
+  _isIterable(obj) {
     if (obj == null) {
       return false;
     }
     return typeof obj[Symbol.iterator] === 'function';
   }
 
-  normalize(foodList) {
-    return foodList;
+  normalizeResults(foodList) {
+    throw 'ApiBridge.normalizeResults must be implemented';
   }
 }
