@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'limbux#index'
+  root 'limbus#index'
   resources :limbus
   namespace :api, defaults: { format: :json } do
     resources :nutrient_goals
