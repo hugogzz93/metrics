@@ -26,7 +26,14 @@ const FoodDB = {
 
 	fetch(_foodlist) {
 		var _foodlist = _foodlist.map(i => {return {'ndbno': i}})
-		return API.get(this.urlify(_foodlist, {'api_key': this.api_key}))
+    return API.get(this.urlify(_foodlist, {'api_key': this.api_key}))
+              .then(res => {
+                let rawFoods = res.foods;
+                let foods = rawFoods.map(raw => ({desc: raw.food.desc,
+                                                       nutrients: raw.food.nutrients}));
+                let nutrientConsumption = Calculator.getNutrients(foods);
+                return nutrientConsumption
+              })
 	}
 
 }

@@ -1,5 +1,5 @@
 const Calculator = {
-	normalizable: function (unit) {
+	isNormalizable: function (unit) {
 		switch (unit) {
 			case 'g':
 				return true;
@@ -16,7 +16,7 @@ const Calculator = {
 				break;
 		}
 	},
-	normalize: function (value, units) {
+	normalizeToGrams: function (value, units) {
 		var v = Number.parseFloat(value);
 		switch (units) {
 			case 'g':
@@ -26,29 +26,29 @@ const Calculator = {
 			case 'µg':
 				return v/1000000;
 			case 'kcal':
-				return v;
+        return v*1000/8.33;
 			case 'IU':
 				return v;
 			default:
-				throw {Error: 'Unknown Measure', e: units};
+				throw {Error: 'Calculator.normalize::33 - Unknown Measure', e: units};
 				break;
 		}
 	},
 
-	parseValue: function (nutrient, food) {
-		return this.normalize(nutrient.value, nutrient.unit) * (food.grams / 100);
-	},
-
-	calculate: function (foods) {
+	getNutrients: function (foods) {
 		var total = {};
 		for(f of foods) {
 			for(nutrient of f.nutrients) {
-				total[nutrient.nutrient_id] = total[nutrient.nutrient_id] || {name: nutrient.name,
-																												id: nutrient.nutrient_id,
-																												unit: nutrient.unit,
-																												value:0};
-        // if(nutrient.nutrient_id == 208) debugger
-				total[nutrient.nutrient_id].value += Number.parseFloat(nutrient.value) * (f.grams / 100);
+        total[nutrient.nutrient_id] = total[nutrient.nutrient_id] || { name: nutrient.name,
+                                                                       id: nutrient.nutrient_id,
+                                                                       unit: nutrient.unit,
+                                                                       value:0};
+
+        if(!this.isNormalizable(nutrient.unit)) 
+          throw `Calculator.calculate::53 - ${nutrient.name} is not normalizable`;
+
+        let valueInGrams = this.normalizeToGrams(nutrient.value, nutrient.unit);
+				total[nutrient.nutrient_id].value += valueInGrams;
 			}
 		}
 		return total;
