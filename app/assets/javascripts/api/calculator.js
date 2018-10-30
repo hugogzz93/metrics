@@ -1,5 +1,5 @@
 const Calculator = {
-	isNormalizable: function (unit) {
+	_isNormalizable: function (unit) {
 		switch (unit) {
 			case 'g':
 				return true;
@@ -16,7 +16,7 @@ const Calculator = {
 				break;
 		}
 	},
-	normalizeToGrams: function (value, units) {
+	_normalizeToGrams: function (value, units) {
 		var v = Number.parseFloat(value);
 		switch (units) {
 			case 'g':
@@ -44,10 +44,10 @@ const Calculator = {
                                                                        unit: nutrient.unit,
                                                                        value:0};
 
-        if(!this.isNormalizable(nutrient.unit)) 
+        if(!this._isNormalizable(nutrient.unit)) 
           throw `Calculator.calculate::53 - ${nutrient.name} is not normalizable`;
 
-        let valueInGrams = this.normalizeToGrams(nutrient.value, nutrient.unit);
+        let valueInGrams = this._normalizeToGrams(nutrient.value, nutrient.unit);
 				total[nutrient.nutrient_id].value += valueInGrams;
 			}
 		}
