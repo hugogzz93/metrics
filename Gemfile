@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem 'bootstrap'
 gem 'faker'
 gem 'devise'
 gem 'slim-rails'
