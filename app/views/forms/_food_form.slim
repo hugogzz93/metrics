@@ -1,0 +1,45 @@
+.overlay
+.form-box
+  .bg
+  .fg
+    form
+      .form-row
+        .form-control
+          input#weight type='number' step='0.01'
+          .label
+            | Weight
+        .form-control
+          input#sleep type='number' step='0.01'
+          .label
+            | Sleep
+      .form-row
+        .form-control
+          input#fat type='number' step='0.01'
+          .label
+            | Fat
+        .form-control
+          input#water type='number' step='0.01'
+          .label
+            | Water
+        .form-control
+          input#muscle type='number' step='0.01'
+          .label
+            | Muscle
+      .form-row
+        .form-control
+          input#limbus type='submit'value='save'
+  .fg
+    .form-control
+        select#food
+          = @foods.each do |food|
+            option value="#{food.id}" 
+              = food.name
+        .label
+          | Food
+    .form-control
+        input#grams type='number' step='0.01'
+        .label
+          | Grams
+    .form-row
+      .form-control
+        input#consumption type='submit'value='save'
