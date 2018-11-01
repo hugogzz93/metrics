@@ -24,7 +24,9 @@ let CONFIG ={
     {nutrient_id: "22", name: "Fatty acids, total saturated", unit: "g"},
     {nutrient_id: "23", name: "Fatty acids, total monounsaturated", unit: "g"},
     {nutrient_id: "24", name: "Fatty acids, total polyunsaturated", unit: "g"},
-    {nutrient_id: "25", name: "Cholesterol", unit: "mg"}
+    {nutrient_id: "25", name: "Cholesterol", unit: "mg"},
+    {nutrient_id: "26", name: "Vitamin E (alpha-tocopherol", unit: "mg"},
+
   
   ],
   usda_ids: [
@@ -53,5 +55,6 @@ let CONFIG ={
     {nutrient_id: "23", usda_nutrient_id: "645"},
     {nutrient_id: "24", usda_nutrient_id: "646"},
     {nutrient_id: "25", usda_nutrient_id: "601"}
+    {nutrient_id: "26", usda_nutrient_id: "323"}
   ]
 }
