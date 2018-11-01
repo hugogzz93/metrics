@@ -54,7 +54,7 @@ let CONFIG ={
     {nutrient_id: "22", usda_nutrient_id: "606"},
     {nutrient_id: "23", usda_nutrient_id: "645"},
     {nutrient_id: "24", usda_nutrient_id: "646"},
-    {nutrient_id: "25", usda_nutrient_id: "601"}
+    {nutrient_id: "25", usda_nutrient_id: "601"},
     {nutrient_id: "26", usda_nutrient_id: "323"}
   ]
 }
