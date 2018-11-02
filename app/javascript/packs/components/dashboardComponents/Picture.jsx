@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 type Props = {
   subtext: string,
   image: string,
-  success: bool
 }
 
 const Picture = (props: Props) => (

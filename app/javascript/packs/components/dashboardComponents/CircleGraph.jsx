@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 
 type Props = {
   main: string,
-  subtext: string
+  subtext: string,
+  theme: string,
+  col: string
 }
 
 const CircleGraph = (props: Props) => (

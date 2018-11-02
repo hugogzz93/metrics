@@ -7,7 +7,6 @@ type Props = {
   subtext: string,
   suffix: string,
   image: string,
-  success: bool
 }
 
 const LongGraph = (props: Props) => (

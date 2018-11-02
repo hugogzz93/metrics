@@ -6,7 +6,6 @@ type Props = {
   subtext: string,
   suffix: string,
   image: string,
-  success: bool
 }
 
 const Graph = (props: Props) => (
@@ -25,7 +24,6 @@ const Graph = (props: Props) => (
     <div class="content-sub-graph">
     </div>
     { 
-      props.success && 
       <div class="content-sub-icon">
         <i class="fa fa-check" aria-hidden='true'/>
       </div>

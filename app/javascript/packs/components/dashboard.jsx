@@ -2,6 +2,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import CircleGraph from './dashboardComponents/CircleGraph';
+import Graph from './dashboardComponents/Graph';
+import LongGraph from './dashboardComponents/LongGraph';
+import Number from './dashboardComponents/Number';
+import Picture from './dashboardComponents/Picture';
+import Widget from './dashboardComponents/Widget';
+
 class Dashboard extends Component<Object> {
   render() {
     const ContentNumbers = [
@@ -51,23 +58,40 @@ class Dashboard extends Component<Object> {
        {col: 2, main: 'Gl', subtext: 'ENERGY'},
        {col: 2, main: 'Chol', subtext: 'ABSORBTION'}
      ]
+
+
     return (
       <div class="dashboard">
-        <div class="dash-row">
+        <div class="dash-row row">
+          <Widget col={ 4 } theme="dark">
+            <Number {...ContentNumbers[0] }/>
+          </Widget>
+          <Widget col={ 2 } theme="light">
+            <Picture {...ContentPictures[0] }/>
+          </Widget>
+          <Widget col={ 2 } theme="light">
+            <Picture {...ContentPictures[1] }/>
+          </Widget>
+          <Widget col={ 2 } theme="light">
+            <Picture {...ContentPictures[2] }/>
+          </Widget>
+          <Widget col={ 2 } theme="light">
+            <Picture {...ContentPictures[3] }/>
+          </Widget>
         </div>
-        <div class="dash-row">
+        <div class="dash-row row">
         </div>
-        <div class="dash-row">
+        <div class="dash-row row">
         </div>
-        <div class="dash-row">
+        <div class="dash-row row">
         </div>
-        <div class="dash-row">
+        <div class="dash-row row">
         </div>
-        <div class="dash-row">
+        <div class="dash-row row">
         </div>
-        <div class="dash-row">
+        <div class="dash-row row">
         </div>
-        <div class="dash-row">
+        <div class="dash-row row">
         </div>
       </div>
     )
