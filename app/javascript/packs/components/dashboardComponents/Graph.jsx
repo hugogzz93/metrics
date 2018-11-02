@@ -1,5 +1,5 @@
 //@flow
-import React, { Component } from 'react';
+import React from 'react';
 
 type Props = {
   main: string,
@@ -9,18 +9,18 @@ type Props = {
   success: bool
 }
 
-export default const Graph = (props: Props) => (
+const Graph = (props: Props) => (
   <div class="content content-number">
     <div class="content-main-text">
       <span class="content-prefix">
-        <i class={image} aria-hidden="true"/>
+        <i class={props.image} aria-hidden="true"/>
       </span>
       <span class="content-suffix">
-        {suffix}
+        {props.suffix}
       </span>
     </div>
     <div class="content-sub-text">
-      {subtext}
+      {props.subtext}
     </div>
     <div class="content-sub-graph">
     </div>
@@ -33,4 +33,4 @@ export default const Graph = (props: Props) => (
   </div>
 )
 
-
+export default Graph;

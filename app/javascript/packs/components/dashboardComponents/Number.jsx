@@ -1,6 +1,6 @@
 //@flow
 import React, { Component } from 'react';
-import Graph from './graph';
+import Graph from './Graph';
 
 type Props = {
   main: string,
@@ -10,21 +10,22 @@ type Props = {
   success: bool
 }
 
-export default const Number = (props: Props) => (
+const Number = (props: Props) => (
   <div class="content content-number">
     <div class="content-main-text">
       <span class="content-prefix">
-        <i class={image} aria-hidden="true"/>
+        <i class={props.image} aria-hidden="true"/>
       </span>
       <span class="content-accent">
-        {main}
+        {props.main}
       </span>
       <span class="content-suffix">
-        {suffix}
+        {props.suffix}
       </span>
     </div>
     <div class="content-sub-text">
-      {subtext}
+      {props.subtext}
     </div>
   </div>
 )
+export default Number;

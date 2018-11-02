@@ -1,6 +1,6 @@
 //@flow
 import React, { Component } from 'react';
-import Graph from './graph';
+import Graph from './Graph';
 
 type Props = {
   main: string,
@@ -10,7 +10,7 @@ type Props = {
   success: bool
 }
 
-export default const LongGraph = (props: Props) => (
+const LongGraph = (props: Props) => (
   <div class="content long-bar">
     <div class="content-info">
       <Graph {...props}/>
@@ -18,3 +18,5 @@ export default const LongGraph = (props: Props) => (
     <div class="content-chart">
     </div>
   </div>
+)
+export default LongGraph;

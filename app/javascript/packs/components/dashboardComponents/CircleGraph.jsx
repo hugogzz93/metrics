@@ -12,13 +12,13 @@ const CircleGraph = (props: Props) => (
     </div>
     <div class="content-main-text">
       <span class="content-accent">
-        {main}
+        {props.main}
       </span>
     </div>
     <div class="content-sub-text">
-      {subtext}
+      {props.subtext}
     </div>
   </div>
 )
 
-
+export default CircleGraph;
