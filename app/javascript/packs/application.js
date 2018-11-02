@@ -10,10 +10,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Hello } from './hello_react';
+import App from './components/App';
+
+import store from './lib/store';
+import { Provider } from 'react-redux';
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Hello name="React" />,
+    <Provider store={store}>
+      <App/>
+    </Provider>,
     document.body.appendChild(document.createElement('div')),
   )
 })
