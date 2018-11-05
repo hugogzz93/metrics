@@ -58,6 +58,7 @@ class Dashboard extends Component<Object> {
        {col: 2, main: 'Gl', subtext: 'ENERGY'},
        {col: 2, main: 'Chol', subtext: 'ABSORBTION'}
      ]
+  
 
 
     return (
@@ -80,6 +81,18 @@ class Dashboard extends Component<Object> {
           </Widget>
         </div>
         <div class="dash-row row">
+          <Widget col={ 3 } theme="dark">
+            <Graph {...ContentGraphs[0]}/>
+          </Widget>
+          <Widget col={ 3 } theme="dark">
+            <Graph {...ContentGraphs[1]}/>
+          </Widget>
+          <Widget col={ 3 } theme="dark">
+            <CircleGraph {...CircleGraphs[0]}/>
+          </Widget>
+          <Widget col={ 3 } theme="dark">
+            <CircleGraph {...CircleGraphs[1]}/>
+          </Widget>
         </div>
         <div class="dash-row row">
         </div>
