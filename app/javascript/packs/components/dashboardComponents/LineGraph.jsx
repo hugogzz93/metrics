@@ -10,17 +10,16 @@ type Props = {
   image: string,
 }
 
-class Graph extends Component<Props> {
+class LineGraph extends Component<Props> {
   componentDidMount() {
     const lineChart = new LineChart();
-    const widget = this.refs.body;
-    const graphElement = widget.children[2];
-    lineChart.generate(graphElement, [0, 4, 2, 1], 'red');
+    const graphContainer = this.refs.graphContainer;
+    lineChart.generate(graphContainer, [0, 4, 2, 1], 'red');
   }
 
   render() {
     return (
-      <div class="content content-number" ref="body">
+      <div class="content content-number" >
         <div class="content-main-text">
           <span class="content-prefix">
             <i class={this.props.image} aria-hidden="true"/>
@@ -32,11 +31,11 @@ class Graph extends Component<Props> {
         <div class="content-sub-text">
           {this.props.subtext}
         </div>
-        <div class="content-sub-graph">
+        <div class="content-sub-graph" ref="graphContainer">
         </div>
       </div>
     )
   }
 }
 
-export default Graph;
+export default LineGraph;

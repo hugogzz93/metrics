@@ -1,6 +1,6 @@
 //@flow
 import React, { Component } from 'react';
-import Graph from './Graph';
+import LineGraph from './LineGraph';
 
 type Props = {
   main: string,

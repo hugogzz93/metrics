@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import CircleGraph from './dashboardComponents/CircleGraph';
-import Graph from './dashboardComponents/Graph';
+import LineGraph from './dashboardComponents/LineGraph';
 import LongGraph from './dashboardComponents/LongGraph';
 import Number from './dashboardComponents/Number';
 import Picture from './dashboardComponents/Picture';
@@ -27,7 +27,7 @@ class Dashboard extends Component<Object> {
        { col: 2, image: 'fa fa-dribbble', subtext: 'CHEMOSYNTH'},
      ]
 
-     const ContentGraphs = [
+     const ContentLineGraphs = [
        {col: 3, image: 'fa fa-thermometer-empty', main: '48', suffix: '%', subtext:'MUSCLE PERCENTAGE'},
        {col: 3, image: 'fa fa-heartbeat', main: '98', suffix: '%', subtext:'WATER PERCENTAGE'},
        {col: 3, image: 'fa fa-cuttlery', main: '61', suffix: 'kg', subtext:'BODY WEIGHT'},
@@ -82,10 +82,10 @@ class Dashboard extends Component<Object> {
         </div>
         <div class="dash-row row">
           <Widget col={ 3 } theme="dark">
-            <Graph {...ContentGraphs[0]}/>
+            <LineGraph {...ContentLineGraphs[0]}/>
           </Widget>
           <Widget col={ 3 } theme="dark">
-            <Graph {...ContentGraphs[1]}/>
+            <LineGraph {...ContentLineGraphs[1]}/>
           </Widget>
           <Widget col={ 3 } theme="dark">
             <CircleGraph {...CircleGraphs[0]}/>

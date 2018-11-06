@@ -1,6 +1,6 @@
 //@flow
 import React, { Component } from 'react';
-import Graph from './Graph';
+import LineGraph from './LineGraph';
 
 type Props = {
   main: string,
@@ -12,7 +12,7 @@ type Props = {
 const LongGraph = (props: Props) => (
   <div class="content long-bar">
     <div class="content-info">
-      <Graph {...props}/>
+      <LineGraph {...props}/>
     </div>
     <div class="content-chart">
     </div>

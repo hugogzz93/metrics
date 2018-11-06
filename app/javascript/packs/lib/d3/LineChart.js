@@ -3,7 +3,7 @@ import * as d3 from 'd3';
 
 export default class LineChart {
 
-  generate(elem, dataset, color, curve) {
+  generate(elem, dataset, color, curve = d3.curveLinear) {
     const padding = D3Dom.getPadding(elem);
     const height = D3Dom.getHeight(elem);
     const width = D3Dom.getWidth(elem);
@@ -11,9 +11,6 @@ export default class LineChart {
     let svg = d3.select(elem).append('svg')
       .attr('height', height)
       .attr('width', width);
-    // let svg = elem.appendChild(document.createElementNS("http://www.w3.org/2000/svg", "svg"));
-    // svg.setAttribute('height', height)
-    // svg.setAttribute('width', width);
 
     let g = svg.append('g');
 
