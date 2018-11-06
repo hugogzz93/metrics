@@ -95,10 +95,37 @@ class Dashboard extends Component<Object> {
           </Widget>
         </div>
         <div class="dash-row row">
+          <Widget col={ 3 } theme="dark">
+            <LineGraph {...ContentLineGraphs[2]}/>
+          </Widget>
+          <Widget col={ 3 } theme="dark">
+            <LineGraph {...ContentLineGraphs[3]}/>
+          </Widget>
+          <Widget col={ 3 } theme="light">
+            <LineGraph {...ContentLineGraphs[4]}/>
+          </Widget>
+          <Widget col={ 3 } theme="dark">
+            <LineGraph {...ContentLineGraphs[5]}/>
+          </Widget>
         </div>
         <div class="dash-row row">
         </div>
         <div class="dash-row row">
+          <Widget col={ 2 } theme="dark">
+            <CircleGraph {...CircleGraph[0]}/>
+          </Widget>
+          <Widget col={ 2 } theme="dark">
+            <CircleGraph {...CircleGraph[1]}/>
+          </Widget>
+          <Widget col={ 2 } theme="dark">
+            <CircleGraph {...CircleGraph[2]}/>
+          </Widget>
+          <Widget col={ 2 } theme="dark">
+            <CircleGraph {...CircleGraph[3]}/>
+          </Widget>
+          <Widget col={ 2 } theme="dark">
+            <CircleGraph {...CircleGraph[4]}/>
+          </Widget>
         </div>
         <div class="dash-row row">
         </div>
