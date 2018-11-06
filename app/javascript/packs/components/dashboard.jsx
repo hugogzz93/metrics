@@ -11,6 +11,13 @@ import Widget from './dashboardComponents/Widget';
 
 class Dashboard extends Component<Object> {
   render() {
+    const CaloricConsumption = {
+      image: 'fa fa-user', 
+      main: '5,869,724',
+      suffix: 'kcal', 
+      subtext: 'TOTAL ENG. CONSUMPTION',
+      consumptions: []
+    }
     const ContentNumbers = [
       {
           image: 'fa fa-thermomenter-empty',
@@ -32,13 +39,13 @@ class Dashboard extends Component<Object> {
        {col: 3, image: 'fa fa-heartbeat', main: '98', suffix: '%', subtext:'WATER PERCENTAGE'},
        {col: 3, image: 'fa fa-cuttlery', main: '61', suffix: 'kg', subtext:'BODY WEIGHT'},
        {col: 3, image: 'fa fa-user', main: '16', suffix: '%', subtext:'FAT PERCENTAGE'},
+       {col: 3, image: 'fa fa-database', main: '680', suffix: 'kcal', subtext: 'AVG. CONSUMPTION'},
        {col: 3, image: 'fa fa-clock-o', main: '', suffix: 'Hrs', subtext:'SLEEP'}
      ]
 
      const CircleGraphs = [
        {col: 3, main: 'Protein', subtext: ''},
        {col: 3, main: 'Calories', subtext: ''},
-       // {col: 3, image: 'fa fa-database', main: '680', suffix: 'kcal', subtext:'AVG. CONSUMPTION'},
        {col: 2, main: 'Mg', subtext: 'STRENGHT'},
        {col: 2, main: 'Zn', subtext: 'MUSCLES'},
        {col: 2, main: 'H20', subtext: 'GENERAL'},
@@ -109,6 +116,9 @@ class Dashboard extends Component<Object> {
           </Widget>
         </div>
         <div class="dash-row row">
+          <Widget col={ 12 } theme="light">
+            <LongGraph {...CaloricConsumption}/>
+          </Widget>
         </div>
         <div class="dash-row row">
           <Widget col={ 2 } theme="dark">
@@ -126,12 +136,49 @@ class Dashboard extends Component<Object> {
           <Widget col={ 2 } theme="dark">
             <CircleGraph {...CircleGraphs[6]}/>
           </Widget>
+          <Widget col={ 2 } theme="dark">
+            <CircleGraph {...CircleGraphs[7]}/>
+          </Widget>
         </div>
         <div class="dash-row row">
+          <Widget col={ 2 } theme="dark">
+            <CircleGraph {...CircleGraphs[8]}/>
+          </Widget>
+          <Widget col={ 2 } theme="dark">
+            <CircleGraph {...CircleGraphs[9]}/>
+          </Widget>
+          <Widget col={ 2 } theme="dark">
+            <CircleGraph {...CircleGraphs[10]}/>
+          </Widget>
+          <Widget col={ 2 } theme="dark">
+            <CircleGraph {...CircleGraphs[11]}/>
+          </Widget>
+          <Widget col={ 2 } theme="dark">
+            <CircleGraph {...CircleGraphs[12]}/>
+          </Widget>
+          <Widget col={ 2 } theme="dark">
+            <CircleGraph {...CircleGraphs[13]}/>
+          </Widget>
         </div>
         <div class="dash-row row">
-        </div>
-        <div class="dash-row row">
+          <Widget col={ 2 } theme="dark">
+            <CircleGraph {...CircleGraphs[14]}/>
+          </Widget>
+          <Widget col={ 2 } theme="dark">
+            <CircleGraph {...CircleGraphs[15]}/>
+          </Widget>
+          <Widget col={ 2 } theme="dark">
+            <CircleGraph {...CircleGraphs[16]}/>
+          </Widget>
+          <Widget col={ 2 } theme="dark">
+            <CircleGraph {...CircleGraphs[17]}/>
+          </Widget>
+          <Widget col={ 2 } theme="dark">
+            <CircleGraph {...CircleGraphs[18]}/>
+          </Widget>
+          <Widget col={ 2 } theme="dark">
+            <CircleGraph {...CircleGraphs[19]}/>
+          </Widget>
         </div>
       </div>
     )

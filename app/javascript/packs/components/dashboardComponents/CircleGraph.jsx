@@ -1,6 +1,7 @@
 //@flow
 import React, { Component } from 'react';
 import CircleChart from '../../lib/d3/CircleChart';
+import Colors from './colors';
 
 type Props = {
   main: string,
@@ -9,10 +10,20 @@ type Props = {
 }
 
 class CircleGraph extends Component<Props> {
+  health(percent: number) {
+    if(percent > 0.4) {
+      if(percent > 0.8)
+        return Colors.good;
+      else 
+        return Colors.warning;
+    } else
+      return Colors.bad;
+  }
   componentDidMount() {
     const circleGraph = new CircleChart();
     const graphContainer = this.refs.graphContainer;
-    circleGraph.generate(graphContainer, 0.5, 'red')
+    const percent = 0.85
+    circleGraph.generate(graphContainer, percent, this.health(percent))
   }
 
   render() {
