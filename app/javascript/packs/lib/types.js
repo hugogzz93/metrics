@@ -16,5 +16,6 @@ export type Dish = {
 
 export type DishFormState = {
   foodInput: Food,
-  foods: Array<Food>
+  foods: Array<Food>,
+  foodOptions: Array<Food>
 }

@@ -8,11 +8,16 @@ import {
 
 const DefaultState: DishFormState = {
   foodInput: {name: '', grams: 0},
-  foods: []
+  foods: [],
+  foodOption: [],
 }
 
 const dishFormReducer = function(state: Dish = DefaultState, action: Action): DishFormState {
   switch(action.type) {
+    case 'FOOD_OPTIONS_UPDATE':
+      debugger
+      return state;
+      
     case 'FOOD_INPUT_UPDATE':
       var key = action.payload.key;
       var value = action.payload.value;

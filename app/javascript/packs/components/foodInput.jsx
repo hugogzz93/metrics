@@ -5,6 +5,8 @@ import {
   onFoodInputUpdate
 } from '../lib/actions';
 
+import FoodDb from '../lib/FoodDb';
+
 @connect(state => ({
   foodState: state.dishFormReducer.foodInput
 }))
@@ -14,9 +16,10 @@ class FoodInput extends Component<Object> {
     this.props.dispatch(onFoodInputUpdate('grams', grams));
   }
 
-  onFoodChange(e: Object) {
+  onFoodNameChange(e: Object) {
     const name = e.target.value;
     this.props.dispatch(onFoodInputUpdate('name', name));
+    FoodDb.search()
   }
 
   render() {
@@ -32,7 +35,7 @@ class FoodInput extends Component<Object> {
     return (
       <div class="in__food-input">
         <div class="form_control">
-          <select name="food-name" onChange={this.onFoodChange.bind(this)}>
+          <select name="food-name" onChange={this.onFoodNameChange.bind(this)}>
             { foodOptions }
           </select>
         </div>

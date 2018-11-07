@@ -55,4 +55,4 @@ const Calculator = {
 	}
 }
 
-// unit: nutrient.unit,
+export default Calculator;

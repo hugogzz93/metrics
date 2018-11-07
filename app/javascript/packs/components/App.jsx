@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {  BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux';
-import DishForm from './dishForm';
+import DishForm from './DishForm';
 import Dashboard from './Dashboard';
 
 // @connect( state => ({

@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import FoodInput from './foodInput';
+import FoodInput from './FoodInput';
 
 @connect(state => ({
   formState: state.dishFormReducer
@@ -10,7 +10,7 @@ import FoodInput from './foodInput';
 class DishForm extends Component<Object> {
   render() {
     return (
-      <form class="in__dish">
+      <form class="food__form">
         <button>
           New Dish
         </button>

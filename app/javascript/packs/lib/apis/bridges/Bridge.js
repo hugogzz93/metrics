@@ -1,4 +1,4 @@
-class ApiBridge {
+export default class Bridge {
   _urlify() {
     let string = this.url
     for(let arg of arguments) {

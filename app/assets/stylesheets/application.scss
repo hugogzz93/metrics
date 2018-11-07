@@ -25,6 +25,11 @@ body {
 	font-family: 'Roboto', sans-serif;
 	background-image: url(https://images.unsplash.com/photo-1493690283958-32df2c86326e?dpr=2&auto=format&fit=crop&w=1500&h=1004&q=80&cs=tinysrgb&crop=);
 	background-size: contain;
+  background: linear-gradient(to right, #513249, #79525c);
+  transition: background 0.3s;
+  &.white {
+    background: linear-gradient(to right, white, silver);
+  }
 }
 
 .flex {

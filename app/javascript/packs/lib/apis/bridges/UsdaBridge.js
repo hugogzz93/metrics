@@ -1,4 +1,5 @@
-class UsdaBridge extends ApiBridge {
+import Bridge from './Bridge';
+export default class UsdaBridge extends Bridge {
   constructor() {
     super();
     this.url = 'https://api.nal.usda.gov/ndb/V2/reports';

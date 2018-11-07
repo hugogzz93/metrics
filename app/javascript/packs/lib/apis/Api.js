@@ -1,4 +1,4 @@
-class Api {
+export default class Api {
   get(endpoint) {
     return window.fetch(endpoint, {
       method: 'GET',
