@@ -11,6 +11,11 @@ import FoodDb from '../lib/FoodDb';
   foodState: state.dishFormReducer.foodInput
 }))
 class FoodInput extends Component<Object> {
+  FoodDb: FoodDb
+  constructor(props: Object) {
+    super(props);
+    this.FoodDb = new FoodDb();
+  }
   onGramsChange(e: Object) {
     const grams = e.target.value;
     this.props.dispatch(onFoodInputUpdate('grams', grams));
@@ -19,14 +24,17 @@ class FoodInput extends Component<Object> {
   onFoodNameChange(e: Object) {
     const name = e.target.value;
     this.props.dispatch(onFoodInputUpdate('name', name));
-    FoodDb.search()
+    this.FoodDb.search(name).then(res => {
+      console.log('finished call')
+      debugger
+    })
   }
 
   render() {
-    const foodNames = ['avocado', 'tomato'];
+    const foodNames = ['butter', 'tomato'];
     const foodOptions = foodNames.map((name, index) => (
       <option key={`${index}-${name}`}
-        value={index}>
+        value={name}>
         {name}
       </option>
     ))

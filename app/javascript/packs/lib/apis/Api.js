@@ -3,21 +3,24 @@ export default class Api {
     return window.fetch(endpoint, {
       method: 'GET',
       headers: new Headers({'Accept': 'application/json'})
-    }).then(this._handleError)
-      .then(this._handleContentType)
-      .catch(error => {throw new Error(error)})
+    }).then(this._handleError.bind(this))
+      .catch(error => { throw new Error(error)})
   }
 
-  _handleError(res) {
-    return res.ok ? res : Promise.reject(res.statusText);
+  async _handleError(res) {
+    if(!res.ok)
+      return Promise.reject(res.statusText)
+    if(!this._contentTypeIsValid(res))
+      return Promise.reject("Oops, we didn't get a JSON!")
+    return body.json();
   }
 
-  _handleContentType(res) {
+  _contentTypeIsValid(res) {
     const contentType = res.headers.get('content-type');
 
-    if(contentType && contentType.includes('application/json'))
-      return res.json();
-    return Promise.reject("Oops, we didn't get a JSON!");
+    if(contentType && contentType.includes('application/json') || contentType.includes('text/json'))
+      return true;
+    return false;
   }
 
   implement(bridge) {

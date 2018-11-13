@@ -12,15 +12,22 @@ export default class UsdaSearchBridge extends Bridge {
       apiKey: this.api_key,
       query: query,
       dataSource: 'Standard Reference',
+      format: 'json',
+      max: 10
     });
   }
 
   _urlify(params) {
-    return `${this.url}?q=${params.query}&ds=${params.dataSource}&api_key=${params.apiKey}`;
+    return `${this.url}?q=${params.query}&ds=${params.dataSource}&api_key=${params.apiKey}&max=${params.max}`;
   }
 
-  _normalizeResults(results) {
-    debugger
+  normalizeResults(results) {
+    const normalizedResults = results.list.item.map(item => ({
+      name: item.name,
+      api_id: item.ndbno
+    }))
+
+    return normalizedResults;
   }
 
 }
