@@ -6,7 +6,7 @@ export type Action = {
 export type Food = {
   name: string,
   id?: number,
-  grams: number
+  grams?: number
 }
 
 export type Dish = {

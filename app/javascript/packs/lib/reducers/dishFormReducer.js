@@ -9,7 +9,7 @@ import {
 const DefaultState: DishFormState = {
   foodInput: {name: '', grams: 0},
   foods: [],
-  foodOption: [],
+  foodOptions: [],
 }
 
 const dishFormReducer = function(state: Dish = DefaultState, action: Action): DishFormState {
@@ -32,6 +32,10 @@ const dishFormReducer = function(state: Dish = DefaultState, action: Action): Di
       var emptyFood = {name: '', grams: 0}
       newState.foods.push(state.foodInput);
       newState.foodInput = emptyFood;
+      return newState;
+    case 'FOOD_OPTION_UPDATE':
+      var newState = {...state};
+      newState.foodOptions = action.payload
       return newState;
     default:
       return state;

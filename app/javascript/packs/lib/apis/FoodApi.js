@@ -29,8 +29,12 @@ export default class FoodApi extends Api {
     if(!this._contentTypeIsValid(res))
       return Promise.reject("Oops, we didn't get a JSON!")
     const body = await res.json();
-    if(body.errors)
-      return Promise.reject(body.errors.error[0].message);
+    if(body.errors) {
+      const message = body.errors.error[0].message;
+      if(message == 'Your search resulted in zero results.Change your parameters and try again')
+        return body;
+      return Promise.reject();
+    }
     return body
 
   }

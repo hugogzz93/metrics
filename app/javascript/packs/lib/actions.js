@@ -9,3 +9,10 @@ export function onFoodInputUpdate(key: string, value: number | string ): Action 
     payload: {key, value}
   }
 }
+
+export function onFoodOptionsUpdate(payload: Array<Object> ): Action {
+  return {
+    type: 'FOOD_OPTION_UPDATE',
+    payload
+  }
+}

@@ -22,6 +22,9 @@ export default class UsdaSearchBridge extends Bridge {
   }
 
   normalizeResults(results) {
+    if(!results.list)
+      return []
+
     const normalizedResults = results.list.item.map(item => ({
       name: item.name,
       api_id: item.ndbno
