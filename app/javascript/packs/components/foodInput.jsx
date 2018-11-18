@@ -3,14 +3,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { debounce, debounceEvent }  from '../lib/debounce';
 import {
-  onFoodInputUpdate,
-  onFoodOptionsUpdate
+  updateFoodInput,
+  updateFoodOptions
 } from '../lib/actions';
 
 import FoodDb from '../lib/FoodDb';
 
 @connect(state => ({
-  foodState: state.dishFormReducer.foodInput,
+  foodInput: state.dishFormReducer.foodInput,
   foodOptions: state.dishFormReducer.foodOptions
 }))
 class FoodInput extends Component<Object> {
@@ -21,15 +21,15 @@ class FoodInput extends Component<Object> {
   }
   onGramsChange(e: Object) {
     const grams = e.target.value;
-    this.props.dispatch(onFoodInputUpdate('grams', grams));
+    this.props.dispatch(updateFoodInput('grams', grams));
   }
 
   onFoodNameChange(e: Object) {
     const name = e.target.value;
-    this.props.dispatch(onFoodInputUpdate('name', name));
-    this.FoodDb.search(name).then(foodOptions => {
-      this.props.dispatch(onFoodOptionsUpdate(foodOptions));
-    })
+    this.props.dispatch(updateFoodInput('name', name));
+    // this.FoodDb.search(name).then(foodOptions => {
+    //   this.props.dispatch(updateFoodOptions(foodOptions));
+    // })
   }
 
   render() {
@@ -45,7 +45,8 @@ class FoodInput extends Component<Object> {
         <div class="form_control">
           <input type='text'
             name='text-name'
-            onChange={ debounceEvent.apply(this, [this.onFoodNameChange.bind(this), 250])}
+            onChange={ this.onFoodNameChange.bind(this) }
+            value={this.props.foodInput.name}
           />
           { foodOptions }
         </div>
@@ -53,7 +54,7 @@ class FoodInput extends Component<Object> {
           <label>Grams:</label>
           <input type="number" 
             name="food-qty" 
-            value={this.props.foodState.grams} 
+            value={this.props.foodInput.grams} 
             onChange={this.onGramsChange.bind(this)}/>
         </div>
       </div>

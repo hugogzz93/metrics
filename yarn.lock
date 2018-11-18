@@ -5952,6 +5952,11 @@ reduce-function-call@^1.0.1, reduce-function-call@^1.0.2:
   dependencies:
     balanced-match "^0.4.2"
 
+redux-act@^1.7.4:
+  version "1.7.4"
+  resolved "https://registry.yarnpkg.com/redux-act/-/redux-act-1.7.4.tgz#0dd7c6daaca98649540a3d42c259814b048bd8e1"
+  integrity sha512-gzpod7iF2sIQAxUjTn/qNmzPGenE3zrFFZlBv8X4Ee8MsvF750jZi0Gucg4Il3KvZ78fsKR2vp6SBuSmD7ex0Q==
+
 redux-devtools-instrument@^1.0.1:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/redux-devtools-instrument/-/redux-devtools-instrument-1.9.0.tgz#2faed9ac3292c783284b21843edfaa0567764a0c"

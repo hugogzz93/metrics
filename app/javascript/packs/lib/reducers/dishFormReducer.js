@@ -1,45 +1,16 @@
-//@flow
-import {
-  type Action,
-  type Food,
-  type Dish,
-  type DishFormState,
-} from '../types';
+import { createReducer } from 'redux-act';
+import * as actions from '../actions';
 
-const DefaultState: DishFormState = {
+const DefaultState = {
   foodInput: {name: '', grams: 0},
   foods: [],
   foodOptions: [],
 }
 
-const dishFormReducer = function(state: Dish = DefaultState, action: Action): DishFormState {
-  switch(action.type) {
-    case 'FOOD_OPTIONS_UPDATE':
-      debugger
-      return state;
-      
-    case 'FOOD_INPUT_UPDATE':
-      var key = action.payload.key;
-      var value = action.payload.value;
-      var foodInput = {
-        ...state.foodInput,
-        [key]: value
-      }
-      var newState = {...state, foodInput };
-      return newState;
-    case 'FOOD_INPUT_SAVE':
-      var newState = {...state};
-      var emptyFood = {name: '', grams: 0}
-      newState.foods.push(state.foodInput);
-      newState.foodInput = emptyFood;
-      return newState;
-    case 'FOOD_OPTION_UPDATE':
-      var newState = {...state};
-      newState.foodOptions = action.payload
-      return newState;
-    default:
-      return state;
-  }
-}
-
-export default dishFormReducer;
+export default createReducer({
+  [actions.updateFoodInput]: (state, {key, value}) => ({
+    ...state,
+    foodInput: {...state.foodInput, [key]: value}
+  }),
+  [actions.updateFoodOptions]: (state, foodOptions) => ({ ...state, foodOptions }) 
+}, DefaultState)

@@ -1,18 +1,7 @@
-//@flow
-import {
-  type Action
-} from './types';
+import { type Action } from './types';
+import { createAction } from 'redux-act';
 
-export function onFoodInputUpdate(key: string, value: number | string ): Action {
-  return {
-    type: 'FOOD_INPUT_UPDATE',
-    payload: {key, value}
-  }
-}
+export const updateFoodInput = createAction('update food input', (key: string, value: number): Action => ({key, value}));
+export const updateFoodOptions = createAction('update food options', (payload: Array<Object>): Action => payload);
 
-export function onFoodOptionsUpdate(payload: Array<Object> ): Action {
-  return {
-    type: 'FOOD_OPTION_UPDATE',
-    payload
-  }
-}
+
