@@ -20,7 +20,7 @@ export default class FoodDb {
 
   async search(foodName) {
     this.api.implement(this.UsdaSearchBridge);
-    return this.api.searchFoods(foodName);
+    return await this.api.searchFoods(foodName);
   }
   
   async _prepareApiRequest(foodIds) {
